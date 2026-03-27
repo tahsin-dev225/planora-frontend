@@ -1,5 +1,7 @@
 import { apiSlice } from "../apiSlice/apiSlice";
 
+// router.post("/logout",
+
 export const userApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
 
@@ -20,10 +22,20 @@ export const userApi = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
 
+    // 👉 logout
+    logout: builder.mutation<void, void>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "POST",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
   }),
 });
 
 export const {
   useGetCurrentUserQuery,
   useGetAllUsersQuery,
+  useLogoutMutation,
 } = userApi;

@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { Facebook, Chrome, Linkedin, ArrowRight } from "lucide-react";
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({
@@ -15,6 +18,8 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -48,12 +53,27 @@ export default function LoginPage() {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      // Proceed with registration logic
-      console.log("Login data:", formData);
-      // alert("Registration successful! (Demo)");
+      setLoading(true);
+      try {
+        const response = await axios.post("http://localhost:5000/api/v1/auth/login", formData, {
+          withCredentials: true,
+        });
+
+        console.log("Login successful:", response.data);
+        toast.success("Login successful!");
+        
+        // Refresh router cache and go home
+        router.push("/");
+        router.refresh();
+      } catch (error: any) {
+        console.error("Login error:", error);
+        toast.error(error?.response?.data?.message || "Login failed. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -158,10 +178,11 @@ export default function LoginPage() {
             <div className="pt-4">
               <button
                 type="submit"
-                className="w-full bg-rose-500 hover:bg-rose-600 cursor-pointer text-white font-bold py-1.5 md:py-2.5 rounded-full transition duration-300 flex justify-center items-center shadow-lg shadow-teal-900/20 group"
+                disabled={loading}
+                className="w-full bg-rose-500 hover:bg-rose-600 disabled:bg-rose-400 disabled:cursor-not-allowed cursor-pointer text-white font-bold py-1.5 md:py-2.5 rounded-full transition duration-300 flex justify-center items-center shadow-lg shadow-teal-900/20 group"
               >
-                SIGN IN
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {loading ? "SIGNING IN..." : "SIGN IN"}
+                {!loading && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               </button>
               <p className="text-gray-400 font- text-center mt-4">
                 Don't have an account? <Link href="/register" className="text-teal-400 hover:text-teal-300 font-medium">Sign Up</Link>

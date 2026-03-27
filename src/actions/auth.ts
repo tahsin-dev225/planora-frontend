@@ -36,3 +36,10 @@ export async function setAuthCookies(
     });
   }
 }
+
+export async function removeAuthCookies() {
+  const cookieStore = await cookies();
+  cookieStore.delete("token");
+  cookieStore.delete("accessToken");
+  cookieStore.delete("refreshToken");
+}

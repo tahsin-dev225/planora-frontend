@@ -7,6 +7,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { setAuthCookies } from "@/actions/auth";
+import { toast } from "sonner";
 
 export default function RegistrationPage() {
   const [formData, setFormData] = useState({
@@ -69,17 +70,13 @@ export default function RegistrationPage() {
           withCredentials: true,
         });
         console.log("Registration response:", response.data);
-        // if (response.data?.data) {
-        //   const { token, accessToken, refreshToken } = response.data.data;
-        //   await setAuthCookies(token, accessToken, refreshToken);
-        // }
 
         console.log("Registration successful:", response.data);
-        alert("Registration successful!");
+        toast.success("Registration successful!");
         router.push("/");
       } catch (error: any) {
         console.error("Registration error:", error);
-        alert(error?.response?.data?.message || "Registration failed. Please try again.");
+        toast.error(error?.response?.data?.message || "Registration failed. Please try again.");
       } finally {
         setLoading(false);
       }

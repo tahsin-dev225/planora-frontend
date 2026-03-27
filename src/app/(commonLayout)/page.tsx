@@ -7,7 +7,10 @@ import { useGetCurrentUserQuery } from "@/redux/features/userSlice/userSlice";
 
 export default function Home() {
   const { data } = useGetCurrentUserQuery();
-  
+  if(data?.data){
+      console.log(data?.data);
+  }
+
   return (
     <main className="min-h-screen bg-background">
       <Navbar />
