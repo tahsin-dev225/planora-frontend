@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import { Dancing_Script } from 'next/font/google';
 
@@ -34,14 +35,14 @@ const Banner = () => {
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
           {/* Main Headline */}
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-8 leading-tight">
-            Bringing Your Vision to Life<br className="hidden md:block" /> with Flawless <span className={`text-red-600 ${dancingScript.className} font-medium px-2 inline-block -rotate-2 transform`}>Execution</span>
+            Crafting Unforgettable<br className="hidden md:block" /> <span className={`text-red-500 ${dancingScript.className} font-medium px-2 inline-block -rotate-2 transform`}>Experiences</span>
           </h1>
           
           {/* Glassmorphism Subtitle Container */}
           <div className="mt-8 relative inline-block mx-auto max-w-4xl">
-            <div className="absolute inset-0 bg-white/5 backdrop-blur-xsm rounded-xl border border-white/5 shadow-xl"></div>
+            <div className="absolute inset-0 bg-white/5 backdrop-blur-sm rounded-xl border border-white/5 shadow-xl"></div>
             <p className="relative z-10 p-6 md:p-8 text-base md:text-lg text-gray-300 leading-relaxed font-light">
-              We turn your ideas into extraordinary experiences through strategic planning,<br className="hidden md:block"/> creative design, and seamless execution &mdash; ensuring your event exceeds every<br className="hidden md:block"/> expectation.
+              Your premier partner in comprehensive event management. From corporate conferences to grand<br className="hidden md:block"/> celebrations, we handle every detail with precision, creativity, and passion.
             </p>
           </div>
         </div>
@@ -50,10 +51,10 @@ const Banner = () => {
       {/* Overlapping Stats Section */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 -mt-32 md:-mt-40 pb-16 lg:pb-24">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          <StatCard number="252+" label="Partners & Exhibiting Brands" />
-          <StatCard number="121+" label="Industry Experts" />
-          <StatCard number="61+" label="Hours of Live Presentations" />
-          <StatCard number="32+" label="150+ Businesses in Attendance" />
+          <StatCard number="500+" label="Events Successfully Managed" />
+          <StatCard number="50k+" label="Attendees Satisfied" />
+          <StatCard number="15+" label="Years of Industry Experience" />
+          <StatCard number="100%" label="Commitment to Excellence" />
         </div>
       </div>
     </>

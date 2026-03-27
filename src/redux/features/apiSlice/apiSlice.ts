@@ -2,9 +2,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  tagTypes: ["Review", "User"],
+  tagTypes: ["Review", "User", "Event"],
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:5000/api/v1",
+    baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:5000/api/v1",
     credentials: "include",
 
     prepareHeaders: async (headers, { getState, endpoint }) => {

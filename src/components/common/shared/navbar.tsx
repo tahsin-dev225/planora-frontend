@@ -25,7 +25,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
-              <Image className='size-16' src="/img/logo.png" alt="Logo" width={100} height={100} />
+              <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
             </Link>
           </div>
 
@@ -47,10 +47,10 @@ const Navbar = () => {
           {/* Contact Button */}
           <div className="hidden md:flex items-center">
             <Link
-              href="/contact"
+              href="/login"
               className="bg-red-600 text-white hover:bg-red-700 px-6 py-2 rounded-md text-sm font-medium transition-all shadow-lg hover:shadow-red-600/20"
             >
-              Contact Us
+              Login
             </Link>
           </div>
 
@@ -89,11 +89,11 @@ const Navbar = () => {
           ))}
           <div className="pt-4 flex flex-col space-y-3 px-3">
             <Link
-              href="/contact"
+              href="/login"
               className="w-full text-center bg-red-600 text-white hover:bg-red-700 px-4 py-3 rounded-md font-medium transition-colors shadow-sm"
               onClick={() => setIsOpen(false)}
             >
-              Contact Us
+              Login
             </Link>
           </div>
         </div>
