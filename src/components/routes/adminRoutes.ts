@@ -1,26 +1,26 @@
 import { Route } from "@/types";
 
 
-export const AdminRoute: Route[] =[
-    {
-      title: "Admin Dashboard",
-      items: [
-        {
-          title: "User Management",
-          url: "/admin-dashboard/user-management",
-        },
-        {
-          title: "Manage Medicine",
-          url: "/admin-dashboard/manage-medicine",
-        },
-        {
-          title: "Manage Order",
-          url: "/admin-dashboard/manage-order",
-        },
-        {
-          title: "Manage Category",
-          url: "/admin-dashboard/manage-category",
-        },
-      ],
-    },
-  ]
+export const AdminRoute: Route[] = [
+  {
+    title: "Admin Dashboard",
+    items: [
+      {
+        title: "Add Events",
+        url: "/admin-dashboard/add-events",
+      },
+      {
+        title: "Manage my Events",
+        url: "/admin-dashboard/manage-my-events",
+      },
+      {
+        title: "Manage my participants",
+        url: "/admin-dashboard/manage-my-participants",
+      },
+      {
+        title: "Manage ",
+        url: "/admin-dashboard/manage",
+      },
+    ],
+  },
+]

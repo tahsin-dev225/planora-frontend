@@ -41,7 +41,7 @@ const Banner = () => {
           <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/80 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl xl:max-w-[1300px] 2xl:max-w-[1500px] 3xl:max-w-[1800px] mx-auto px-4 md:px-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center mt-8 md:mt-1">
+        <div className="relative z-10 max-w-7xl xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1500px] mx-auto px-4 md:px-10 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center mt-8 md:mt-1">
           
           {/* Left Column - Text Content */}
           <div className="text-left mt-8 md:mt-0 xl:pr-12">

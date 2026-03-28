@@ -14,8 +14,8 @@ import {
 import Link from "next/link";
 import { Route } from "@/types";
 import { AdminRoute } from "../routes/adminRoutes";
-import { CustomerRoute } from "../routes/customerRoutes";
-import { SellerRoute } from "../routes/sellerRoutes";
+import { UserRoute } from "../routes/userRoute";
+import Image from "next/image";
 
 export function AppSidebar({
   user,
@@ -29,11 +29,11 @@ export function AppSidebar({
     case "ADMIN":
       routes = AdminRoute;
       break;
-    case "CUSTOMER":
-      routes = CustomerRoute;
+    case "USER":
+      routes = UserRoute;
       break;
-    case "SELLER":
-      routes = SellerRoute;
+    case "SUPER_ADMIN":
+      routes = AdminRoute;
       break;
 
     default:
@@ -44,14 +44,11 @@ export function AppSidebar({
   return (
     <Sidebar {...props}>
       <SidebarContent>
-        <Link href="/" className="flex py-3.5 px-2.5 items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500 text-white font-bold">
-            +
-          </span>
-          <span className="text-xl font-bold text-gray-900">
-            Med<span className="text-emerald-500">store</span>
-          </span>
-        </Link>
+        <div className="flex-shrink-0  rounded-lg flex items-center">
+            <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
+              <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
+            </Link>
+          </div>
         {/* We create a SidebarGroup for each parent. */}
         {routes.map((item) => (
           <SidebarGroup key={item.title}>
@@ -65,6 +62,11 @@ export function AppSidebar({
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
+                {user?.role === "SUPER_ADMIN" && <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <Link href="/manage-users">Manage Users</Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

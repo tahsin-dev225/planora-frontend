@@ -12,7 +12,7 @@ const Cta = () => {
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>
       <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-rose-600/10 blur-[120px] rounded-full pointer-events-none animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-      <div className="max-w-7xl xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl xl:max-w-[1200px] 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative rounded-[3rem] overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d] border border-white/5 p-8 md:p-16 lg:p-24 shadow-2xl group">
           
           {/* Subtle Grid Pattern inside card */}

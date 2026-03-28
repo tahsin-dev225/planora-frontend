@@ -1,6 +1,18 @@
 {
   "tailwindCSS.experimental.configFile": "src/app/globals.css",
   "editor.quickSuggestions": {
-    "strings": true
-  }
+    "strings": true,
+    "other": true,
+    "comments": false
+  },
+  "editor.inlineSuggest.enabled": true,
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.validate": true,
+  "tailwindCSS.emmetCompletions": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "css.validate": false,
+  "scss.validate": false
 }

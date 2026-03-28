@@ -75,23 +75,29 @@ export const EventtApi = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["Event"],
     }),
-    getPaginatedEvents: builder.query({
-      query: ({ page, search }) => {
-        return {
-          url: `/events/paginated?page=${page}&search=${encodeURIComponent(
-            search || ""
-          )}`,
-          credentials: "include",
-        };
-      },
-      providesTags: ["Event"],
-    }),
 
-    getAllEvents: builder.query<any, void>({
-      query: () => {
-        return {
-          url: `/events`,
-        };
+    getAllEvents: builder.query<
+      any,
+      {
+        page?: number;
+        limit?: number;
+        search?: string;
+        type?: "PUBLIC" | "PRIVATE" | "";
+        isPaid?: boolean | "";
+      }
+    >({
+      query: (filters = {}) => {
+        const params = new URLSearchParams();
+
+        if (filters.page)   params.set("page",  String(filters.page));
+        if (filters.limit)  params.set("limit", String(filters.limit));
+        if (filters.search) params.set("search", filters.search);
+        if (filters.type)   params.set("type",   filters.type);
+        if (filters.isPaid !== undefined && filters.isPaid !== "")
+          params.set("isPaid", String(filters.isPaid));
+
+        const qs = params.toString();
+        return { url: qs ? `/event?${qs}` : `/event` };
       },
       providesTags: ["Event"],
     }),
@@ -155,10 +161,10 @@ export const EventtApi = apiSlice.injectEndpoints({
 
 export const {
   useAddEventMutation,
-  useGetPaginatedEventsQuery,
   useGetAllEventsQuery,
   useGetEventQuery,
   useUpdateEventMutation,
   useDeleteEventMutation,
   useGetFilteredEventsQuery,
 } = EventtApi;
+

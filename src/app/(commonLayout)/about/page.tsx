@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen w-full bg-[#121212] flex flex-col overflow-x-hidden items-center">
       {/* Container to restrict max width for large screens */}
-      <div className="max-w-7xl xl:max-w-[1500px] 2xl:max-w-[1700px] 3xl:max-w-[1800px] w-full px-6 md:px-12 lg:px-20 py-20 pb-40 space-y-40">
+      <div className="max-w-7xl xl:max-w-[1200px] 2xl:max-w-[1400px] 3xl:max-w-[1500px] w-full px-6 md:px-12 lg:px-20 py-20 pb-40 space-y-40">
         
         {/* === Section 1: Hero Intro === */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start mt-10">
