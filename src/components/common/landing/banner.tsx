@@ -3,6 +3,7 @@ import React from 'react';
 import { Dancing_Script } from 'next/font/google';
 import { useGetStatsQuery } from '@/redux/features/statsSlice/statSlice';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const dancingScript = Dancing_Script({ subsets: ['latin'] });
 
@@ -21,10 +22,7 @@ const Banner = () => {
   const {data } = useGetStatsQuery();
   return (
     <>
-      <div className="relative w-full pt-40 pb-56 lg:pt-40 lg:pb-64 flex items-center overflow-hidden bg-slate-950 min-h-[100vh]">
-
-        
-
+      <div className="relative w-full pt-20 sm:pt-40 pb-56 lg:pt-40 lg:pb-64 flex items-center overflow-hidden bg-slate-950 min-h-[100vh]">
         {/* Background Gradients & Subtle Grid */}
         <div className="absolute inset-0 z-0">
           <Image 
@@ -54,11 +52,11 @@ const Banner = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
               </span>
-              <span className="text-sm font-semibold text-red-50 tracking-wider uppercase">Premium Event Management</span>
+              <span className="text-sm text-red-50 tracking-wider uppercase">Premium Event Management</span>
             </div>
 
             {/* Main Headline */}
-            <h1 className="text-5xl md:text-7xl lg:text-7xl xl:text-[5.5rem] font-bold tracking-tight text-white mb-6 leading-[1.1]">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.4rem] font-bold tracking-tight text-white mb-6 leading-[1.1]">
               Crafting Unforgettable <br className="hidden md:block" /> 
               <span className="relative z-10 inline-block mt-2">
                 <span className={`text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-rose-500 to-red-600 ${dancingScript.className} font-bold px-2 inline-block -rotate-3 transform scale-110 drop-shadow-[0_0_35px_rgba(225,29,72,0.8)]`}>Experiences</span>
@@ -67,21 +65,21 @@ const Banner = () => {
             </h1>
             
             {/* Subtitle */}
-            <div className="mt-8 max-w-xl">
-              <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-light">
+            <div className="mt-6 max-w-xl">
+              <p className="text-md md:text-lg text-gray-300 leading-relaxed font-light">
                 Your premier partner in comprehensive event management. From corporate conferences to grand celebrations, we handle every detail with precision, creativity, and passion.
               </p>
             </div>
 
             {/* Call to Actions */}
-            <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-5">
-              <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_30px_rgba(225,29,72,0.4)] hover:shadow-[0_0_50px_rgba(225,29,72,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group">
+            <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-5">
+              <Link href={"/dashboard" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-3 xl:py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_30px_rgba(225,29,72,0.4)] hover:shadow-[0_0_50px_rgba(225,29,72,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group">
                 Start Planning
                 <svg className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </button>
-              <button className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-xl backdrop-blur-md hover:-translate-y-1 flex items-center justify-center">
+              </Link>
+              <Link href={"/events" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-3 xl:py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-xl backdrop-blur-md hover:-translate-y-1 flex items-center justify-center">
                 Explore Portfolio
-              </button>
+              </Link>
             </div>
           </div>
 

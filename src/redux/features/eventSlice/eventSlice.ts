@@ -87,7 +87,7 @@ export const EventtApi = apiSlice.injectEndpoints({
       providesTags: ["Event"],
     }),
 
-    getAllEvents: builder.query({
+    getAllEvents: builder.query<any, void>({
       query: () => {
         return {
           url: `/events`,

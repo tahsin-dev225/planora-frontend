@@ -3,7 +3,7 @@ import React from 'react'
 const GlobalLoading = () => {
   return (
     <div className='flex items-center justify-center h-screen'>
-      <div className='animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600'></div>
+      <div className='animate-spin rounded-full h-24 w-24 border-b-2 border-sky-600'></div>
     </div>
   )
 }

@@ -20,20 +20,19 @@ const Footer = () => {
   const footerLinks = {
     company: [
       { name: "About Us", href: "/about" },
-      { name: "Our Services", href: "/services" },
-      { name: "Event Gallery", href: "/gallery" },
+      { name: "Events", href: "/events" },
       { name: "Success Stories", href: "/stories" },
     ],
     resources: [
-      { name: "Tickets & Pricing", href: "/tickets" },
-      { name: "Venue Selections", href: "/venue" },
-      { name: "Sponsor Packages", href: "/sponsors" },
-      { name: "FAQs", href: "/faq" },
+      { name: "Tickets & Pricing", href: "/about" },
+      { name: "Venues", href: "/about" },
+      { name: "Sponsors", href: "/about" },
+      { name: "FAQs", href: "/about" },
     ],
     legal: [
-      { name: "Privacy Policy", href: "/privacy" },
-      { name: "Terms of Service", href: "/terms" },
-      { name: "Cookie Policy", href: "/cookies" },
+      { name: "Privacy Policy", href: "/about" },
+      { name: "Terms of Service", href: "/about" },
+      { name: "Cookie Policy", href: "/about" },
     ]
   };
 
@@ -60,17 +59,6 @@ const Footer = () => {
             <p className="text-gray-400 text-lg leading-relaxed mb-8 max-w-sm">
               Your premier partner in crafting unforgettable experiences. We turn your vision into perfectly executed reality.
             </p>
-            <div className="flex items-center gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, index) => (
-                <a 
-                  key={index} 
-                  href="#" 
-                  className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-red-600 hover:border-red-600 transition-all duration-300 group"
-                >
-                  <Icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Links Columns */}
@@ -109,30 +97,16 @@ const Footer = () => {
           {/* Newsletter Column */}
           <div className="lg:col-span-4">
             <h4 className="text-xl font-bold mb-8 relative inline-block">
-              Newsletter
+              Contact Us
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-red-600 rounded-full"></span>
             </h4>
-            <p className="text-gray-400 mb-6">Subscribe to get the latest updates and special offers.</p>
-            <form className="relative group">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="w-full bg-white/5 border border-white/10 rounded-full py-4 pl-6 pr-14 text-white placeholder-gray-500 focus:outline-none focus:border-red-600 transition-colors"
-              />
-              <button 
-                type="submit" 
-                className="absolute right-2 top-2 bottom-2 w-10 h-10 rounded-full bg-red-600 flex items-center justify-center hover:bg-red-500 transition-all shadow-lg shadow-red-600/20"
-              >
-                <Send className="w-4 h-4 text-white" />
-              </button>
-            </form>
-            
+           
             <div className="mt-10 space-y-4">
               <div className="flex items-center gap-4 text-gray-400 group cursor-pointer hover:text-white transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-red-600/10 group-hover:border-red-600/30 transition-all text-red-500">
                   <Mail className="w-5 h-5" />
                 </div>
-                <span>hello@planora.com</span>
+                <span>planora@gmail.com</span>
               </div>
               <div className="flex items-center gap-4 text-gray-400 group cursor-pointer hover:text-white transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-red-600/10 group-hover:border-red-600/30 transition-all text-red-500">
@@ -145,17 +119,10 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-center items-center gap-6">
           <p className="text-gray-500 text-sm">
             © {currentYear} Planora Events. All rights reserved. Crafting Memories with Passion.
           </p>
-          <div className="flex items-center gap-8">
-            {footerLinks.legal.map((link) => (
-              <Link key={link.name} href={link.href} className="text-gray-500 hover:text-white text-sm transition-colors">
-                {link.name}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
     </footer>

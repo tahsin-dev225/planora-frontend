@@ -26,11 +26,8 @@ const Navbar = () => {
   
   const navLinks = [
     { name: 'Home', href: '/' },
+    { name: 'Events', href: '/events' },
     { name: 'About', href: '/about' },
-    { name: 'Event Gallery', href: '/gallery' },
-    { name: 'Venue', href: '/venue' },
-    { name: 'Tickets', href: '/tickets' },
-    { name: 'Sponsors', href: '/sponsors' },
   ];
 
 
@@ -40,7 +37,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
+          <div className="flex-shrink-0  rounded-lg flex items-center">
             <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
               <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
             </Link>
@@ -58,6 +55,17 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
+
+              {
+                user?.data && (
+                  <Link
+                    href="/dashboard"
+                    className="text-gray-300 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
+                  >
+                    Dashboard
+                  </Link>
+                )
+              }
             </div>
           </div>
           
@@ -108,6 +116,17 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          {
+            user?.data && (
+              <Link
+                href="/dashboard"
+                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
+                onClick={() => setIsOpen(false)}
+              >
+                Dashboard
+              </Link>
+            )
+          }
           <div className="pt-4 flex flex-col space-y-3 px-3">
             {user?.data ? (
               <div className="flex justify-center py-2">
