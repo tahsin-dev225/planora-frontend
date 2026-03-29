@@ -157,7 +157,7 @@ const ProfileDrawer = ({ user }: { user: any }) => {
     if (isSuccess) {
       const cleanup = async () => {
         router.push("/login");
-        router.refresh();
+        window.location.reload();
       };
       cleanup();
     }

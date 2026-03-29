@@ -4,6 +4,7 @@ import { EventCard } from "@/components/common/shared/eventCard";
 import { useGetAllEventsQuery } from "@/redux/features/eventSlice/eventSlice";
 import { useState } from "react";
 import { Search, SlidersHorizontal, ChevronLeft, ChevronRight } from "lucide-react";
+import CardLoading from "@/components/common/shared/cardLoading";
 
 const EventsPage = () => {
   // ── Filter State ──
@@ -150,12 +151,13 @@ const EventsPage = () => {
       {/* ── Events Grid ── */}
       <div className="max-w-7xl xl:max-w-[1200px] mx-auto px-6">
         {isLoading || isFetching ? (
-          <div className="flex justify-center items-center min-h-[40vh]">
-            <div className="relative">
-              <div className="h-16 w-16 rounded-full border-2 border-white/10 animate-spin border-t-primary" />
-              <div className="absolute inset-0 h-16 w-16 rounded-full border-2 border-primary/10 animate-ping" />
+           <div className='flex items-center justify-center'>
+            <div className="grid w-full max-w-7xl xl:max-w-[1200px] 3xl:max-w-[1400px] mx-auto px-6 grid-cols-1 md:grid-cols-2 3xl:grid-cols-3 gap-6">
+              {[...Array(2)].map((_, i) => (
+                <CardLoading key={i} />
+              ))}
             </div>
-          </div>
+    </div>
         ) : events.length === 0 ? (
           <div className="flex flex-col items-center justify-center min-h-[40vh] text-center">
             <div className="text-5xl mb-4">🔍</div>
@@ -166,7 +168,7 @@ const EventsPage = () => {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-3 gap-6">
             {events.map((event: any) => (
               <EventCard key={event.id} event={event} />
             ))}

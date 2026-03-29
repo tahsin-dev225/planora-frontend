@@ -65,19 +65,21 @@ import { apiSlice } from "../apiSlice/apiSlice";
 export const EventtApi = apiSlice.injectEndpoints({
   overrideExisting: true,
   endpoints: (builder) => ({
-    addEvent: builder.mutation({
-      query: (info) => {
-        return {
-          url: "/event/create-event",
-          method: "POST",
-          body: info,
-        };
-      },
+
+    addEvent: builder.mutation<any, FormData>({
+      query: (formData) => ({
+        url: "/event/create-event",
+        method: "POST",
+        body: formData,
+        // Do NOT set formData:true here — the native FormData object
+        // already tells fetch to NOT JSON.stringify the body.
+        // formData:true can corrupt the multipart boundary,
+        // causing multer to fail and Cloudinary to receive an empty stream.
+      }),
       invalidatesTags: ["Event"],
     }),
 
-    getAllEvents: builder.query<
-      any,
+    getAllEvents: builder.query<any,
       {
         page?: number;
         limit?: number;
@@ -89,10 +91,10 @@ export const EventtApi = apiSlice.injectEndpoints({
       query: (filters = {}) => {
         const params = new URLSearchParams();
 
-        if (filters.page)   params.set("page",  String(filters.page));
-        if (filters.limit)  params.set("limit", String(filters.limit));
+        if (filters.page) params.set("page", String(filters.page));
+        if (filters.limit) params.set("limit", String(filters.limit));
         if (filters.search) params.set("search", filters.search);
-        if (filters.type)   params.set("type",   filters.type);
+        if (filters.type) params.set("type", filters.type);
         if (filters.isPaid !== undefined && filters.isPaid !== "")
           params.set("isPaid", String(filters.isPaid));
 
@@ -101,14 +103,25 @@ export const EventtApi = apiSlice.injectEndpoints({
       },
       providesTags: ["Event"],
     }),
-    getEvent: builder.query({
-      query: (query) => {
+
+    getUpcomingEvents: builder.query<any, void>({
+      query: () => {
         return {
-          url: `/event/${query}`,
+          url: `/event/upcoming-events`,
         };
       },
       providesTags: ["Event"],
     }),
+
+    getEventById: builder.query<any, string>({
+      query: (id) => {
+        return {
+          url: `/event/get-single-event/${id}`,
+        };
+      },
+      providesTags: ["Event"],
+    }),
+
     updateEvent: builder.mutation({
       query: (info) => {
         return {
@@ -119,6 +132,7 @@ export const EventtApi = apiSlice.injectEndpoints({
       },
       invalidatesTags: ["Event"],
     }),
+
     deleteEvent: builder.mutation({
       query: (info) => {
         return {
@@ -138,33 +152,33 @@ export const EventtApi = apiSlice.injectEndpoints({
     //   providesTags: ["Product"],
     // }),
 
-    getFilteredEvents: builder.query({
-      query: (filters) => {
-        // Clean filters: remove null, undefined, or empty string
-        const cleanFilters = Object.fromEntries(
-          Object.entries(filters).filter(
-            ([_, value]) =>
-              value !== null && value !== undefined && value !== ""
-          )
-        );
+    // getFilteredEvents: builder.query({
+    //   query: (filters) => {
+    //     // Clean filters: remove null, undefined, or empty string
+    //     const cleanFilters = Object.fromEntries(
+    //       Object.entries(filters).filter(
+    //         ([_, value]) =>
+    //           value !== null && value !== undefined && value !== ""
+    //       )
+    //     );
 
-        // return `/products/filter?${queryParams}`;
-        return {
-          url: "/event/filteredEvents",
-          params: cleanFilters,
-        };
-      },
-      providesTags: ["Event"],
-    }),
+    //     // return `/products/filter?${queryParams}`;
+    //     return {
+    //       url: "/event/filteredEvents",
+    //       params: cleanFilters,
+    //     };
+    //   },
+    //   providesTags: ["Event"],
+    // }),
   }),
 });
 
 export const {
   useAddEventMutation,
   useGetAllEventsQuery,
-  useGetEventQuery,
+  useGetUpcomingEventsQuery,
+  useGetEventByIdQuery,
   useUpdateEventMutation,
-  useDeleteEventMutation,
-  useGetFilteredEventsQuery,
+  useDeleteEventMutation
 } = EventtApi;
 

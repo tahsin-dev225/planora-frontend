@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/sidebar";
 import { useGetCurrentUserQuery } from "@/redux/features/userSlice/userSlice";
 
-export default  function DashboardLayout({
+export default function DashboardLayout({
   admin,
   user
 }: {
