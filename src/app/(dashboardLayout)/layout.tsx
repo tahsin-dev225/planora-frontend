@@ -17,7 +17,7 @@ export default function DashboardLayout({
   user: React.ReactNode;
 }) {
   const { data } = useGetCurrentUserQuery();
-  console.log(data)
+  console.log('user',data)
 
   return (
     <SidebarProvider>

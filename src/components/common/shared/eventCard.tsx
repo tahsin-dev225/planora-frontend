@@ -56,6 +56,7 @@ export const EventCard = ({ event }: EventCardProps) => {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
           priority
+          unoptimized
         />
         {/* Dark scrim */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

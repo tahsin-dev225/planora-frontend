@@ -18,7 +18,7 @@ const EventsPage = () => {
 
   const { data, isLoading, isFetching } = useGetAllEventsQuery({
     page,
-    limit: 9,
+    limit: 10,
     search,
     type,
     isPaid,

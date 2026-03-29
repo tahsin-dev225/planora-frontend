@@ -41,7 +41,7 @@ const Label = ({
   </label>
 );
 
-const AddEventsPage = () => {
+const AddEvents = () => {
   const router = useRouter();
   const [addEvent, { isLoading }] = useAddEventMutation();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -374,4 +374,4 @@ const AddEventsPage = () => {
   );
 };
 
-export default AddEventsPage;
+export default AddEvents;
