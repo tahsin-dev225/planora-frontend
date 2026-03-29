@@ -3,8 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, Calendar, Zap } from 'lucide-react';
+import { useGetCurrentUserQuery } from '@/redux/features/userSlice/userSlice';
 
 const Cta = () => {
+  const {data:user} = useGetCurrentUserQuery();
   return (
     <section className="relative py-24 overflow-hidden bg-[#0a0a0a]">
       {/* Background Glows */}
@@ -37,19 +39,19 @@ const Cta = () => {
               </p>
               
               <div className="flex flex-col sm:flex-row gap-5">
+                {user?.data?.id ? <Link href="/dashboard"
+                className="px-4 md:px-8 py-1.5 lg:py-3 xl:py-3.5 gap-3 bg-teal-500/80 hover:bg-teal-500/10 border border-white/10 hover:border-white/20 text-white rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-md hover:-translate-y-1 flex items-center justify-center"
+                >Go to Dashboard 
+                <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-1.5 transition-transform" />
+                </Link> 
+                :
                 <Link 
                   href="/register" 
-                  className="px-4 md:px-8 py-1.5 lg:py-3 xl:py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 flex items-center justify-center gap-3 group/btn"
+                  className="px-4 md:px-8 py-1.5 gap-3 lg:py-3 xl:py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-2xl font-bold text-lg transition-all duration-300 shadow-xl shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-1 flex items-center justify-center gap-3 group/btn"
                 >
                   Get Started Now
                   <ArrowRight className="w-6 h-6 group-hover/btn:translate-x-1.5 transition-transform" />
-                </Link>
-                <Link 
-                  href="/about" 
-                  className="px-4 md:px-8 py-1.5 lg:py-3 xl:py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-2xl font-bold text-lg transition-all duration-300 backdrop-blur-md hover:-translate-y-1 flex items-center justify-center"
-                >
-                  Schedule a Demo
-                </Link>
+                </Link>}
               </div>
             </div>
 

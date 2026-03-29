@@ -18,8 +18,8 @@ export const AdminRoute: Route[] = [
         url: "/admin-dashboard/manage-my-participants",
       },
       {
-        title: "Manage ",
-        url: "/admin-dashboard/manage",
+        title: "My Joined Events",
+        url: "/admin-dashboard/joined-events",
       },
     ],
   },

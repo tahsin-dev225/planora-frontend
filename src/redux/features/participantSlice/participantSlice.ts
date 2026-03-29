@@ -15,10 +15,10 @@ export const participantApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Participant"],
     }),
 
-    // get my participants
-    getMyParticipants: builder.query<any, void>({
+    // get my joined or participated events
+    getMyJoinedEvents: builder.query<any, void>({
       query: () => ({
-        url: "/participant/my-participants",
+        url: "/participant/getMyParticipited-events",
         method: "GET",
       }),
       providesTags: ["Participant"],
@@ -30,5 +30,5 @@ export const participantApi = apiSlice.injectEndpoints({
 
 export const {
   useAddParticipantMutation,
-  useGetMyParticipantsQuery
+  useGetMyJoinedEventsQuery
 } = participantApi;

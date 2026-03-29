@@ -1,7 +1,7 @@
 "use client";
 
 import { useGetEventByIdQuery } from "@/redux/features/eventSlice/eventSlice";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -16,12 +16,18 @@ import {
   CircleDollarSign,
   BadgeCheck,
   MessageSquare,
+  Send,
+  Loader2,
 } from "lucide-react";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useAddParticipantMutation } from "@/redux/features/participantSlice/participantSlice";
 import { toast } from "sonner";
+import { useGetCurrentUserQuery } from "@/redux/features/userSlice/userSlice";
+import { useAddReviewMutation } from "@/redux/features/reviewSlice/reviewSlice";
+import { useState } from "react";
+
 
 const StarRating = ({ rating }: { rating: number }) => (
   <div className="flex items-center gap-0.5">
@@ -42,15 +48,26 @@ const SkeletonBlock = ({ className }: { className?: string }) => (
 
 const EventDetailsPage = () => {
   const { id } = useParams();
-  const { data, isLoading, isError } = useGetEventByIdQuery(id as string);
+  const route = useRouter();
+  const { data, isLoading, isError, refetch } = useGetEventByIdQuery(id as string);
+  const { data: user } = useGetCurrentUserQuery();
   const event = data?.data;
   const [addParticipant] = useAddParticipantMutation();
-  const buttonClass ="w-full h-12 rounded-xl bg-slate-500 hover:bg-slate-500/90 text-white font-black text-sm uppercase tracking-[0.12em] transition-all hover:scale-[1.02] hover:shadow cursor-pointer hover:shadow-slate-500/25 active:scale-95"
+  const [addReview, { isLoading: isSubmittingReview }] = useAddReviewMutation();
+  const buttonClass = "w-full h-12 rounded-xl bg-slate-500 hover:bg-slate-500/90 text-white font-black text-sm uppercase tracking-[0.12em] transition-all hover:scale-[1.02] hover:shadow cursor-pointer hover:shadow-slate-500/25 active:scale-95";
+
+  // ── Review form state ──
+  const [reviewRating, setReviewRating] = useState(0);
+  const [hoverRating, setHoverRating] = useState(0);
+  const [reviewComment, setReviewComment] = useState("");
 
   const handleAddParticipant = async () => {
+    if (!user?.data?.id) {
+      route.push("/login");
+      return;
+    }
     try {
       const response = await addParticipant({ eventId: event?.id as string }).unwrap() as any;
-      // If a Stripe payment URL is returned, redirect immediately
       const paymentUrl = response?.data?.paymentUrl;
       if (paymentUrl) {
         window.location.href = paymentUrl;
@@ -60,6 +77,36 @@ const EventDetailsPage = () => {
     } catch (error: any) {
       const msg = error?.data?.message || "Failed to join event. Please try again.";
       toast.error(msg);
+    }
+  };
+
+  const handleSubmitReview = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!user?.data?.id) {
+      route.push("/login");
+      return;
+    }
+    if (reviewRating === 0) {
+      toast.error("Please select a star rating.");
+      return;
+    }
+    if (!reviewComment.trim()) {
+      toast.error("Please write a comment.");
+      return;
+    }
+    try {
+      await addReview({
+        eventId: event?.id as string,
+        rating: reviewRating,
+        comment: reviewComment.trim(),
+      }).unwrap();
+      toast.success("Review submitted! Thanks for your feedback 🎉");
+      setReviewRating(0);
+      setHoverRating(0);
+      setReviewComment("");
+      refetch();
+    } catch (err: any) {
+      toast.error(err?.data?.message || "Failed to submit review.");
     }
   };
 
@@ -81,7 +128,7 @@ const EventDetailsPage = () => {
   if (isError || !event) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-center px-6">
-        <div className="text-6xl mb-6">😕</div>
+        <div className="text-6xl mb-6"></div>
         <h2 className="text-2xl font-black text-white mb-3">Event not found</h2>
         <p className="text-white/40 mb-8 text-sm">
           This event may have been removed or doesn't exist.
@@ -194,6 +241,11 @@ const EventDetailsPage = () => {
                 <h2 className="text-lg font-black uppercase tracking-widest text-white/40 flex items-center gap-2">
                   <MessageSquare className="h-5 w-5" />
                   Reviews
+                  {event.reviews?.length > 0 && (
+                    <span className="text-white/20 text-sm font-normal normal-case tracking-normal">
+                      ({event.reviews.length})
+                    </span>
+                  )}
                 </h2>
                 {avgRating && (
                   <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.08] rounded-xl px-4 py-2">
@@ -204,8 +256,9 @@ const EventDetailsPage = () => {
                 )}
               </div>
 
+              {/* ── Review List ── */}
               {event.reviews?.length > 0 ? (
-                <div className="space-y-4">
+                <div className="space-y-4 mb-8">
                   {event.reviews.map((review: any) => (
                     <div
                       key={review.id}
@@ -214,11 +267,11 @@ const EventDetailsPage = () => {
                       <div className="flex items-start justify-between gap-4">
                         <div className="flex items-center gap-3">
                           <div className="h-9 w-9 rounded-full bg-primary/20 border border-primary/30 flex items-center justify-center text-primary font-black text-sm">
-                            {review.userId.charAt(0).toUpperCase()}
+                            {review.user?.name?.charAt(0)?.toUpperCase() ?? review.userId.charAt(0).toUpperCase()}
                           </div>
                           <div>
                             <p className="text-sm font-bold text-white">
-                              Anonymous User
+                              {review.user?.name ?? "Anonymous User"}
                             </p>
                             <p className="text-xs text-white/30">
                               {format(new Date(review.createdAt), "MMM dd, yyyy")}
@@ -228,16 +281,91 @@ const EventDetailsPage = () => {
                         <StarRating rating={review.rating} />
                       </div>
                       <p className="text-sm text-white/60 leading-relaxed pl-12">
-                        "{review.comment}"
+                        &ldquo;{review.comment}&rdquo;
                       </p>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-8 text-center">
+                <div className="rounded-2xl bg-white/[0.03] border border-white/[0.06] p-8 text-center mb-8">
+                  <MessageSquare className="h-8 w-8 text-white/10 mx-auto mb-3" />
                   <p className="text-white/30 text-sm">
-                    No reviews yet. Be the first!
+                    No reviews yet. Be the first to share your experience!
                   </p>
+                </div>
+              )}
+
+              {/* ── Add Review Form ── */}
+              {user?.data?.id ? (
+                <div className="rounded-2xl bg-white/[0.03] border border-white/[0.08] p-6 space-y-4">
+                  <h3 className="text-sm font-black uppercase tracking-widest text-white/40">
+                    Leave a Review
+                  </h3>
+
+                  <form onSubmit={handleSubmitReview} className="space-y-4">
+                    {/* Star Picker */}
+                    <div>
+                      <p className="text-xs text-white/30 uppercase tracking-wider mb-2">Your Rating</p>
+                      <div className="flex items-center gap-1">
+                        {[1, 2, 3, 4, 5].map((s) => (
+                          <button
+                            key={s}
+                            type="button"
+                            onClick={() => setReviewRating(s)}
+                            onMouseEnter={() => setHoverRating(s)}
+                            onMouseLeave={() => setHoverRating(0)}
+                            className="transition-transform hover:scale-125"
+                          >
+                            <Star
+                              className={`h-7 w-7 transition-colors ${
+                                s <= (hoverRating || reviewRating)
+                                  ? "fill-amber-400 text-amber-400"
+                                  : "text-white/15"
+                              }`}
+                            />
+                          </button>
+                        ))}
+                        {reviewRating > 0 && (
+                          <span className="ml-2 text-xs text-amber-400/70 font-bold">
+                            {["Terrible","Poor","Okay","Good","Excellent"][reviewRating - 1]}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Comment */}
+                    <div>
+                      <p className="text-xs text-white/30 uppercase tracking-wider mb-2">Comment</p>
+                      <textarea
+                        rows={3}
+                        value={reviewComment}
+                        onChange={(e) => setReviewComment(e.target.value)}
+                        placeholder="Share your experience with this event..."
+                        className="w-full bg-white/[0.04] border border-white/[0.09] rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 outline-none focus:border-amber-400/40 focus:ring-1 focus:ring-amber-400/20 transition-all resize-none"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      disabled={isSubmittingReview}
+                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-300 text-sm font-bold transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmittingReview ? (
+                        <><Loader2 className="h-4 w-4 animate-spin" /> Submitting...</>
+                      ) : (
+                        <><Send className="h-4 w-4" /> Submit Review</>
+                      )}
+                    </button>
+                  </form>
+                </div>
+              ) : (
+                <div className="rounded-2xl bg-white/[0.02] border border-white/[0.06] p-5 flex items-center justify-between gap-4">
+                  <p className="text-sm text-white/30">Sign in to leave a review for this event.</p>
+                  <Link href="/login">
+                    <button className="px-4 py-2 rounded-xl bg-white/[0.05] border border-white/[0.1] text-white/60 text-xs font-bold hover:text-white hover:border-white/20 transition-all">
+                      Sign In
+                    </button>
+                  </Link>
                 </div>
               )}
             </section>

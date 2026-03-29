@@ -2,7 +2,7 @@
 
 import AddEvents from "@/components/dashboard/addEvent";
 
-const UserAddEventsPage = () => {
+const AdminAddEventsPage = () => {
 
 
   return (
@@ -12,4 +12,4 @@ const UserAddEventsPage = () => {
   );
 };
 
-export default UserAddEventsPage;
+export default AdminAddEventsPage;

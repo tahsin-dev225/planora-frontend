@@ -32,7 +32,7 @@ export default function RootLayout({
         <Provider store={store}>
           <SmoothScroll>
             <CurrentUserLoader>{children}</CurrentUserLoader>
-            <Toaster />
+            <Toaster position="top-right" richColors/>
           </SmoothScroll>
         </Provider>
       </body>

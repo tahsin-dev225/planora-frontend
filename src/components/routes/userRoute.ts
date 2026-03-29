@@ -14,8 +14,8 @@ export const UserRoute: Route[] = [
         url: "/dashboard/manage-my-events",
       },
       {
-        title: "Manage my participants",
-        url: "/dashboard/manage-my-participants",
+        title: "My Joined Events",
+        url: "/dashboard/joined-events",
       }
     ],
   },

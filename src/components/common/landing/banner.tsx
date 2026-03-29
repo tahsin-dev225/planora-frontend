@@ -4,6 +4,8 @@ import { Dancing_Script } from 'next/font/google';
 import { useGetStatsQuery } from '@/redux/features/statsSlice/statSlice';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+import { useGetCurrentUserQuery } from '@/redux/features/userSlice/userSlice';
 
 const dancingScript = Dancing_Script({ subsets: ['latin'] });
 
@@ -20,6 +22,7 @@ const Banner = () => {
 
 
   const {data } = useGetStatsQuery();
+  const {data : user} = useGetCurrentUserQuery();
   return (
     <>
       <div className="relative w-full pt-20 sm:pt-40 pb-56 lg:pt-40 lg:pb-64 flex items-center overflow-hidden bg-slate-950 min-h-[100vh]">
@@ -73,12 +76,13 @@ const Banner = () => {
 
             {/* Call to Actions */}
             <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-start gap-5">
-              <Link href={"/dashboard/add-events" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_30px_rgba(225,29,72,0.4)] hover:shadow-[0_0_50px_rgba(225,29,72,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group">
+              <Link href={user?.data?.role === "ADMIN" || user?.data?.role === "SUPER_ADMIN" ? "/admin-dashboard/add-events" : user?.data?.role === "USER" ? "/dashboard/add-events" : "/register" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-2 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-500 hover:to-rose-500 text-white rounded-full font-bold text-lg transition-all duration-300 shadow-[0_0_30px_rgba(225,29,72,0.4)] hover:shadow-[0_0_50px_rgba(225,29,72,0.6)] hover:-translate-y-1 flex items-center justify-center gap-3 group">
                 Start Planning
                 <svg className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </Link>
               <Link href={"/events" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-xl backdrop-blur-md hover:-translate-y-1 flex items-center justify-center">
-                Explore Portfolio
+                Explore Events
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
               </Link>
             </div>
           </div>
