@@ -14,10 +14,6 @@ export const AdminRoute: Route[] = [
         url: "/admin-dashboard/add-events",
       },
       {
-        title: "Manage my participants",
-        url: "/admin-dashboard/manage-my-participants",
-      },
-      {
         title: "My Events",
         url: "/admin-dashboard/manage-my-events",
       },

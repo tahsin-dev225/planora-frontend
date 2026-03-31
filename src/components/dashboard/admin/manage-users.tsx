@@ -38,7 +38,7 @@ console.log(data?.data);
 
     const users = data?.data || [];
 
-    const handleUsers = async (id: string) => {
+    const handleDeleteUser = async (id: string) => {
         try {
             await deleteUser({id}).unwrap();
             toast.success("User deleted successfully");
@@ -46,6 +46,7 @@ console.log(data?.data);
             toast.error(error?.data?.message || "Failed to delete user");
         }
     };
+
     const handleMakeAdmin = async (id: string) => {
         try {
             await makeAdmin({id}).unwrap();
@@ -102,7 +103,8 @@ console.log(data?.data);
                                 <TableRow>
                                     <TableHead className="w-[300px]">User Details</TableHead>
                                     <TableHead>Role</TableHead>
-                                    <TableHead >Make Admin</TableHead>
+                                    <TableHead>Status</TableHead>
+                                    <TableHead >Action</TableHead>
                                 </TableRow>
                             </TableHeader>
                             <TableBody>
@@ -116,6 +118,9 @@ console.log(data?.data);
                                             <TableCell>
                                                 {user?.role}
                                             </TableCell>
+                                            <TableCell>
+                                                {user?.status}
+                                            </TableCell>
                                             <TableCell className="text-right">
                                                 <div className="flex justify-center ">
                                                     <Button 
@@ -123,6 +128,12 @@ console.log(data?.data);
                                                      onClick={() => handleMakeAdmin(user?.id as string)} 
                                                         className={user?.role !== "ADMIN" ? "bg-red-500 cursor-pointer hover:bg-red-600 text-white" : "bg-teal-900 cursor-pointer hover:bg-teal-800 text-white"}>
                                                         {user?.role !== "ADMIN" ? "Make Admin" : "Remove Admin"}
+                                                    </Button>
+                                                    <Button 
+                                                    disabled={isDeleting || user?.role === "SUPER_ADMIN"}
+                                                     onClick={() => handleDeleteUser(user?.id as string)} 
+                                                        className={user?.status !== "ACTIVE" ? "bg-red-500 cursor-pointer hover:bg-red-600 text-white" : "bg-teal-900 cursor-pointer hover:bg-teal-800 text-white"}>
+                                                        {user?.status === "ACTIVE"  && "Delete User"}
                                                     </Button>
                                                 </div>
                                             </TableCell>
