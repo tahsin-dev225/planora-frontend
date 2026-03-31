@@ -50,7 +50,7 @@ const FeaturedEvents = () => {
                     modules={[Pagination, Autoplay, Navigation]}
                     spaceBetween={24}
                     slidesPerView={1}
-                    autoplay={{ delay: 4000, disableOnInteraction: false }}
+                    autoplay={{ delay: 5000, disableOnInteraction: false }}
                     pagination={{ clickable: true, dynamicBullets: true }}
                     breakpoints={{
                         640: { slidesPerView: 1 },

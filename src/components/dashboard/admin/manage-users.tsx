@@ -122,19 +122,19 @@ console.log(data?.data);
                                                 {user?.status}
                                             </TableCell>
                                             <TableCell className="text-right">
-                                                <div className="flex justify-center ">
+                                                <div className="flex justify-center gap-2">
                                                     <Button 
                                                     disabled={isMakingAdmin || user?.role === "SUPER_ADMIN"}
                                                      onClick={() => handleMakeAdmin(user?.id as string)} 
                                                         className={user?.role !== "ADMIN" ? "bg-red-500 cursor-pointer hover:bg-red-600 text-white" : "bg-teal-900 cursor-pointer hover:bg-teal-800 text-white"}>
                                                         {user?.role !== "ADMIN" ? "Make Admin" : "Remove Admin"}
                                                     </Button>
-                                                    <Button 
+                                                    {user?.status === "ACTIVE"  &&<Button 
                                                     disabled={isDeleting || user?.role === "SUPER_ADMIN"}
                                                      onClick={() => handleDeleteUser(user?.id as string)} 
                                                         className={user?.status !== "ACTIVE" ? "bg-red-500 cursor-pointer hover:bg-red-600 text-white" : "bg-teal-900 cursor-pointer hover:bg-teal-800 text-white"}>
-                                                        {user?.status === "ACTIVE"  && "Delete User"}
-                                                    </Button>
+                                                         Delete User
+                                                    </Button>}
                                                 </div>
                                             </TableCell>
                                         </TableRow>

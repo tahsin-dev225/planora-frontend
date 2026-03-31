@@ -89,7 +89,7 @@ export const EventCard = ({ event }: EventCardProps) => {
         </div>
 
         {/* Description */}
-        <p className="text-sm text-white/50 leading-relaxed line-clamp-2">
+        <p className="text-sm line-clamp-1 text-white/50 leading-relaxed ">
           {event?.description}
         </p>
 
