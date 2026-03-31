@@ -44,7 +44,7 @@ export function AppSidebar({
   return (
     <Sidebar {...props}>
       <SidebarContent>
-        <div className="flex-shrink-0  rounded-lg flex items-center">
+        <div className="flex-shrink-0 justify-center py-2  rounded-lg flex items-center">
             <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
               <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
             </Link>
@@ -56,7 +56,7 @@ export function AppSidebar({
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
-                  <SidebarMenuItem key={item.title}>
+                  <SidebarMenuItem className="py-1.5 border-b border-b-rose-500/10" key={item.title}>
                     <SidebarMenuButton asChild>
                       <Link href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>
@@ -64,7 +64,7 @@ export function AppSidebar({
                 ))}
                 {user?.role === "SUPER_ADMIN" && <SidebarMenuItem>
                   <SidebarMenuButton asChild>
-                    <Link href="/manage-users">Manage Users</Link>
+                    <Link href="/admin-dashboard/manage-users">Manage Users</Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>}
               </SidebarMenu>

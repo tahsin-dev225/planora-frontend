@@ -6,20 +6,36 @@ export const AdminRoute: Route[] = [
     title: "Admin Dashboard",
     items: [
       {
-        title: "Add Events",
-        url: "/admin-dashboard/add-events",
+        title: "Dashboard",
+        url: "/admin-dashboard",
       },
       {
-        title: "Manage my Events",
-        url: "/admin-dashboard/manage-my-events",
+        title: "Add Events",
+        url: "/admin-dashboard/add-events",
       },
       {
         title: "Manage my participants",
         url: "/admin-dashboard/manage-my-participants",
       },
       {
+        title: "My Events",
+        url: "/admin-dashboard/manage-my-events",
+      },
+      {
+        title: "Update Featured Events",
+        url: "/admin-dashboard/update-featured",
+      },
+      {
         title: "My Joined Events",
         url: "/admin-dashboard/joined-events",
+      },
+      {
+        title: "Pending Requests",
+        url: "/admin-dashboard/pending-request",
+      },
+      {
+        title: "Need Payment",
+        url: "/admin-dashboard/need-payment",
       },
     ],
   },

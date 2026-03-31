@@ -118,7 +118,7 @@ export const EventCard = ({ event }: EventCardProps) => {
               <CircleDollarSign className="h-3.5 w-3.5 text-white/40" />
             </span>
             <span className={`font-bold tracking-tight ${event?.isPaid ? "text-amber-300" : "text-emerald-300"}`}>
-              {event?.isPaid ? `Tickets from $${event.fee}` : "Free Admission"}
+              {event?.isPaid ? `Registration fee: $${event.fee}` : "Free Registration"}
             </span>
           </div>
         </div>

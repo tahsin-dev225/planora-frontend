@@ -80,7 +80,7 @@ const Banner = () => {
                 Start Planning
                 <svg className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
               </Link>
-              <Link href={"/events" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-xl backdrop-blur-md hover:-translate-y-1 flex items-center justify-center">
+              <Link href={"/events" } className="w-full sm:w-auto px-4 md:px-8 py-1.5 lg:py-2 bg-teal-600/35 hover:bg-teal-600/50 border border-teal-600/10 hover:border-teal-600/20 text-white rounded-full font-semibold text-lg transition-all duration-300 shadow-xl backdrop-blur-md hover:-translate-y-1 flex items-center justify-center">
                 Explore Events
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform" />
               </Link>

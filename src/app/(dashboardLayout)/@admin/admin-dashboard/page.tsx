@@ -3,6 +3,7 @@
 import { useGetDashboardStatsQuery } from "@/redux/features/statsSlice/statSlice";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import EventsBarChart from "@/components/dashboard/admin/EventsBarChart";
 import { 
   CalendarFold, 
   Users, 
@@ -23,6 +24,8 @@ const AdminDashboardPage = () => {
     
     // Extract stats from response
     const stats = data?.data;
+
+    console.log(stats);
 
     // Loading State
     if (isLoading) {
@@ -81,7 +84,7 @@ const AdminDashboardPage = () => {
         },
         {
             title: "Total Users",
-            value: stats?.toatalUsers || 0, // Using the key from the provided JSON response
+            value: stats?.toatalUsers || stats?.totalUsers || 0, // Using the key from the provided JSON response
             description: "Registered Accounts",
             icon: Users,
             color: "text-indigo-600",
@@ -149,6 +152,10 @@ const AdminDashboardPage = () => {
                 ))}
             </div>
 
+            {/* Charts Section */}
+            <div className="grid gap-6 grid-cols-1 lg:grid-cols-1 mb-8">
+                <EventsBarChart data={stats?.eventsPerMonthBar || []}  title="Events Overview" description="Number of events organized per month" />
+            </div>
 
         </div>
     );

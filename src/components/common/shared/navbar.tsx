@@ -59,7 +59,7 @@ const Navbar = () => {
               {
                 user?.data && (
                   <Link
-                    href="/dashboard"
+                    href={user?.data?.role === "ADMIN" || user?.data?.role === "SUPER_ADMIN" ? "/admin-dashboard" : user?.data?.role === "USER" ? "/dashboard" : "/register" }
                     className="text-gray-300 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
                   >
                     Dashboard
@@ -119,7 +119,7 @@ const Navbar = () => {
           {
             user?.data && (
               <Link
-                href="/dashboard"
+                href={user?.data?.role === "ADMIN" || user?.data?.role === "SUPER_ADMIN" ? "/admin-dashboard" : user?.data?.role === "USER" ? "/dashboard" : "/register" }
                 className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
                 onClick={() => setIsOpen(false)}
               >

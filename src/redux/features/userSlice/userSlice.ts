@@ -14,10 +14,9 @@ export const userApi = apiSlice.injectEndpoints({
       providesTags: ["User"],
     }),
 
-    // 👉 optional: get all users (admin)
     getAllUsers: builder.query({
-      query: ({ page = 1, limit = 10 }) => ({
-        url: `/users?page=${page}&limit=${limit}`,
+      query: (page: string) => ({
+        url: `/auth/all-users?page=${page}`,
       }),
       providesTags: ["User"],
     }),
@@ -31,6 +30,22 @@ export const userApi = apiSlice.injectEndpoints({
       invalidatesTags: ["User"],
     }),
 
+    makeAdmin: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
+        url: `/auth/make-admin/${id}`,
+        method: "PATCH",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
+    deleteUser: builder.mutation<void, { id: string }>({
+      query: ({ id }) => ({
+        url: `/auth/delete-user/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["User"],
+    }),
+
   }),
 });
 
@@ -38,4 +53,6 @@ export const {
   useGetCurrentUserQuery,
   useGetAllUsersQuery,
   useLogoutMutation,
+  useMakeAdminMutation,
+  useDeleteUserMutation,
 } = userApi;

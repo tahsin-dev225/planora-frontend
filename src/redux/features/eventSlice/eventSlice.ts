@@ -113,6 +113,15 @@ export const EventtApi = apiSlice.injectEndpoints({
       providesTags: ["Event"],
     }),
 
+    getMyEvents: builder.query<any, void>({
+      query: () => {
+        return {
+          url: `/event/my-event`,
+        };
+      },
+      providesTags: ["Event"],
+    }),
+
     getEventById: builder.query<any, string>({
       query: (id) => {
         return {
@@ -120,6 +129,33 @@ export const EventtApi = apiSlice.injectEndpoints({
         };
       },
       providesTags: ["Event"],
+    }),
+    getEventForFeatured: builder.query<any, string>({
+      query: (page: string) => {
+        return {
+          url: `/event/all-events/featured?page=${page || "1"}`,
+        };
+      },
+      providesTags: ["Event"],
+    }),
+
+    getFeaturedEvents: builder.query<any, void>({
+      query: () => {
+        return {
+          url: `/event/featured-events`,
+        };
+      },
+      providesTags: ["Event"],
+    }),
+
+    makeFeaturedEvent: builder.mutation({
+      query: (id: string) => {
+        return {
+          url: `/event/makeFeatured/${id}`,
+          method: "PATCH",
+        };
+      },
+      invalidatesTags: ["Event"],
     }),
 
     updateEvent: builder.mutation({
@@ -143,33 +179,6 @@ export const EventtApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Event"],
     }),
 
-    // searchProductsByName: builder.query({
-    //   query: (name) => {
-    //     return {
-    //       url: `/products/search?name=${encodeURIComponent(name)}`,
-    //     };
-    //   },
-    //   providesTags: ["Product"],
-    // }),
-
-    // getFilteredEvents: builder.query({
-    //   query: (filters) => {
-    //     // Clean filters: remove null, undefined, or empty string
-    //     const cleanFilters = Object.fromEntries(
-    //       Object.entries(filters).filter(
-    //         ([_, value]) =>
-    //           value !== null && value !== undefined && value !== ""
-    //       )
-    //     );
-
-    //     // return `/products/filter?${queryParams}`;
-    //     return {
-    //       url: "/event/filteredEvents",
-    //       params: cleanFilters,
-    //     };
-    //   },
-    //   providesTags: ["Event"],
-    // }),
   }),
 });
 
@@ -177,8 +186,12 @@ export const {
   useAddEventMutation,
   useGetAllEventsQuery,
   useGetUpcomingEventsQuery,
+  useGetMyEventsQuery,
   useGetEventByIdQuery,
   useUpdateEventMutation,
-  useDeleteEventMutation
+  useDeleteEventMutation,
+  useGetFeaturedEventsQuery,
+  useMakeFeaturedEventMutation,
+  useGetEventForFeaturedQuery
 } = EventtApi;
 

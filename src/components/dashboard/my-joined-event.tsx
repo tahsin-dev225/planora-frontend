@@ -102,7 +102,7 @@ const MyJoinedEvent = () => {
             </span>
           </div>
 
-          <div className="grid grid-cols-1  gap-5">
+          <div className="grid grid-cols-1 gap-5">
             {participants.map((record: any) => (
               <ParticipatedEventCard key={record.id} record={record} />
             ))}

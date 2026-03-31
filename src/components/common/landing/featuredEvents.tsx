@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetUpcomingEventsQuery } from '@/redux/features/eventSlice/eventSlice'
+import { useGetFeaturedEventsQuery, useGetUpcomingEventsQuery } from '@/redux/features/eventSlice/eventSlice'
 import { EventCard } from '../shared/eventCard'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -15,8 +15,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
-const UpcomingEvents = () => {
-    const { data, isLoading } = useGetUpcomingEventsQuery()
+const FeaturedEvents = () => {
+    const { data, isLoading } = useGetFeaturedEventsQuery()
     const events = data?.data ?? []
 
     if (isLoading) {
@@ -36,7 +36,7 @@ const UpcomingEvents = () => {
             <div className="text-center mb-12 px-6 lg:px-3">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/80 mb-3">Discover</p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
-                    Upcoming
+                    Featured
                     <span className='text-rose-500'> Events</span>
                 </h1>
                 <p className="mt-4 text-white/40 text-sm max-w-md lg:max-w-2xl lg:mt-8 mx-auto">
@@ -93,4 +93,4 @@ const UpcomingEvents = () => {
     )
 }
 
-export default UpcomingEvents
+export default FeaturedEvents

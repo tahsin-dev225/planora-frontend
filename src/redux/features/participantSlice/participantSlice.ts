@@ -24,11 +24,58 @@ export const participantApi = apiSlice.injectEndpoints({
       providesTags: ["Participant"],
     }),
 
+    getMyPrivatePaidEvents: builder.query<any, void>({
+      query: () => ({
+        url: "/participant/getMyPrivatePaidEvent",
+        method: "GET",
+      }),
+      providesTags: ["Participant"],
+    }),
+
+    updateParticipantStatus: builder.mutation<any, { id: string; status: "APPROVED" | "REJECTED" }>({
+      query: ({ id, status }) => ({
+        url: `/participant/update-status/${id}`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["Participant"],
+    }),
+
+    makeNeedPayment: builder.mutation<any, { id: string; status: "NEED_PAYMENT" | "REJECTED" }>({
+      query: ({ id, status }) => ({
+        url: `/participant/makeNeedPayment/${id}`,
+        method: "PATCH",
+        body: { status },
+      }),
+      invalidatesTags: ["Participant"],
+    }),
+
+    getNeedPaymentParticipant: builder.query<any, void>({
+      query: () => ({
+        url: "/participant/get-need-payment-participants",
+        method: "GET",
+      }),
+      providesTags: ["Participant"],
+    }),
+
+    payForNeedPay: builder.mutation<any, { id: string }>({
+      query: ({ id }) => ({
+        url: `/participant/payForEvent/${id}`,
+        method: "POST",
+        body: { id },
+      }),
+      invalidatesTags: ["Participant"],
+    }),
 
   }),
 });
 
 export const {
   useAddParticipantMutation,
-  useGetMyJoinedEventsQuery
+  useGetMyJoinedEventsQuery,
+  useGetMyPrivatePaidEventsQuery,
+  useUpdateParticipantStatusMutation,
+  useMakeNeedPaymentMutation,
+  useGetNeedPaymentParticipantQuery,
+  usePayForNeedPayMutation,
 } = participantApi;
