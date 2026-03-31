@@ -26,6 +26,7 @@ export interface IEvent {
   type: "PRIVATE" | "PUBLIC";
   fee: number;
   isPaid: boolean;
+  isFeatured: boolean;
   organizerId: string;
   createdAt: string;
   organizer: {
@@ -71,6 +72,12 @@ export const EventCard = ({ event }: EventCardProps) => {
             {event?.type === "PUBLIC" ? "Public" : "Private"}
           </Badge>
         </div>
+        {event?.isFeatured && <div className="absolute bottom-4 left-4">
+          <Badge className="text-[13px] font-bold tracking-widest px-5 py-3 rounded-full
+           uppercase border backdrop-blur-md bg-teal-500  text-white border-teal-500">
+            Featured
+          </Badge>
+        </div>}
 
         
       </div>
