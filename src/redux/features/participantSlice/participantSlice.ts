@@ -24,6 +24,14 @@ export const participantApi = apiSlice.injectEndpoints({
       providesTags: ["Participant"],
     }),
 
+    getMyPrivateFreeEvents: builder.query<any, void>({
+      query: () => ({
+        url: "/participant/getMyPrivateFreeEvent",
+        method: "GET",
+      }),
+      providesTags: ["Participant"],
+    }),
+
     getMyPrivatePaidEvents: builder.query<any, void>({
       query: () => ({
         url: "/participant/getMyPrivatePaidEvent",
@@ -41,7 +49,7 @@ export const participantApi = apiSlice.injectEndpoints({
       invalidatesTags: ["Participant"],
     }),
 
-    makeNeedPayment: builder.mutation<any, { id: string; status: "NEED_PAYMENT" | "REJECTED" }>({
+    makeNeedPayment: builder.mutation<any, { id: string; status: "NEED_PAYMENT" | "REJECTED" | "APPROVED" }>({
       query: ({ id, status }) => ({
         url: `/participant/makeNeedPayment/${id}`,
         method: "PATCH",
@@ -73,6 +81,7 @@ export const participantApi = apiSlice.injectEndpoints({
 export const {
   useAddParticipantMutation,
   useGetMyJoinedEventsQuery,
+  useGetMyPrivateFreeEventsQuery,
   useGetMyPrivatePaidEventsQuery,
   useUpdateParticipantStatusMutation,
   useMakeNeedPaymentMutation,

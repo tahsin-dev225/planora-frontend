@@ -1,4 +1,5 @@
-import PendingRequestTable from "@/components/dashboard/pending-request";
+import PendingFreeRequestTable from "@/components/dashboard/panding-free-request";
+import PendingRequestTable from "@/components/dashboard/pending-paid-request";
 
 export default function PendingRequestPage() {
     return (
@@ -12,6 +13,9 @@ export default function PendingRequestPage() {
 
             <div className="mt-8">
                 <PendingRequestTable />
+            </div>
+            <div className="mt-8">
+                <PendingFreeRequestTable />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetMyPrivatePaidEventsQuery, useMakeNeedPaymentMutation, useUpdateParticipantStatusMutation } from "@/redux/features/participantSlice/participantSlice";
+import { useGetMyPrivateFreeEventsQuery, useMakeNeedPaymentMutation, useUpdateParticipantStatusMutation } from "@/redux/features/participantSlice/participantSlice";
 import { 
   Table, 
   TableBody, 
@@ -18,13 +18,13 @@ import { toast } from "sonner";
 import { Check, X, Loader2, Calendar, User, Mail } from "lucide-react";
 import { format } from "date-fns";
 
-const PendingRequestTable = () => {
-  const { data, isLoading, isError } = useGetMyPrivatePaidEventsQuery();
+const PendingFreeRequestTable = () => {
+  const { data, isLoading, isError } = useGetMyPrivateFreeEventsQuery();
   const [makeNeedPayment, { isLoading: isUpdating }] = useMakeNeedPaymentMutation();
 
   const requests = data?.data || [];
 
-  const handleStatusUpdate = async (id: string, status: "NEED_PAYMENT" | "REJECTED") => {
+  const handleStatusUpdate = async (id: string, status: "REJECTED" | "APPROVED") => {
     try {
       await makeNeedPayment({ id, status }).unwrap();
       toast.success(`Request ${status.toLowerCase()} successfully`);
@@ -35,9 +35,8 @@ const PendingRequestTable = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        
-      </div>
+        <Card className="animate-pulse border-muted/60 bg-muted/20 h-24">
+        </Card>
     );
   }
 
@@ -54,9 +53,10 @@ const PendingRequestTable = () => {
   return (
     <Card className="border-muted/60 bg-background/50 backdrop-blur-xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Participation Requests</CardTitle>
+        <CardTitle className="text-2xl font-bold">Participation Requests 
+          <span className="text-rose-500">Private + Free</span></CardTitle>
         <CardDescription>
-          Manage join requests for your private and paid events.
+          Manage join requests for your private and Free events.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -141,7 +141,7 @@ const PendingRequestTable = () => {
                             variant="outline" 
                             size="sm" 
                             className="h-8 w-8 p-0 border-emerald-500/30 text-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-600"
-                            onClick={() => handleStatusUpdate(request.id, "NEED_PAYMENT")}
+                            onClick={() => handleStatusUpdate(request.id, "APPROVED")}
                             disabled={isUpdating}
                           >
                             <Check size={16} />
@@ -162,4 +162,4 @@ const PendingRequestTable = () => {
   );
 };
 
-export default PendingRequestTable;
+export default PendingFreeRequestTable;
