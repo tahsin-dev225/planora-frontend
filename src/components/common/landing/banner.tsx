@@ -110,8 +110,8 @@ const Banner = () => {
              </div>
              
              {/* Decorative Sparkles/Dots */}
-             <div className="absolute top-[10%] left-[10%] w-3 h-3 bg-red-400 rounded-full animate-ping"></div>
-             <div className="absolute bottom-[20%] right-[10%] w-4 h-4 bg-rose-500 rounded-full blur-[2px] animate-pulse"></div>
+             {/* <div className="absolute top-[10%] left-[10%] w-3 h-3 bg-red-400 rounded-full animate-ping"></div> */}
+             {/* <div className="absolute bottom-[20%] right-[10%] w-4 h-4 bg-rose-500 rounded-full blur-[2px] animate-pulse"></div> */}
           </div>
         </div>
       </div>

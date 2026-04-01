@@ -66,15 +66,11 @@ export const EventtApi = apiSlice.injectEndpoints({
   overrideExisting: true,
   endpoints: (builder) => ({
 
-    addEvent: builder.mutation<any, FormData>({
-      query: (formData) => ({
+    addEvent: builder.mutation<any, any>({
+      query: (eventData) => ({
         url: "/event/create-event",
         method: "POST",
-        body: formData,
-        // Do NOT set formData:true here — the native FormData object
-        // already tells fetch to NOT JSON.stringify the body.
-        // formData:true can corrupt the multipart boundary,
-        // causing multer to fail and Cloudinary to receive an empty stream.
+        body: eventData,
       }),
       invalidatesTags: ["Event"],
     }),

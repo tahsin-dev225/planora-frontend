@@ -85,31 +85,32 @@ const AddEvents = () => {
       return;
     }
 
-    const formData = new FormData();
-
-    // Backend controller does JSON.parse(req.body.data),
-    // so all JSON fields must be sent as one stringified "data" key.
-    const eventPayload = {
-      title: title.trim(),
-      description: description.trim(),
-      date,
-      time,
-      venue: venue.trim(),
-      type,
-      isPaid,
-      fee: isPaid ? fee : 0,
-    };
-    formData.append("data", JSON.stringify(eventPayload));
-
-    // Banner file goes as a separate multipart field
-    if (bannerFile) formData.append("banner", bannerFile);
     try {
-      toast.loading("Uploading banner...", { id: "banner" })
-      await addEvent(formData).unwrap();
-      toast.success("Event created successfully! 🎉", { id: "banner" });
+      toast.loading("Processing event data...", { id: "create-event" });
+
+      let base64Banner = "";
+      if (bannerFile) {
+        base64Banner = await fileToBase64(bannerFile);
+      }
+
+      const eventPayload = {
+        title: title.trim(),
+        description: description.trim(),
+        date,
+        time,
+        venue: venue.trim(),
+        type,
+        isPaid,
+        fee: isPaid ? fee : 0,
+        banner: base64Banner,
+      };
+
+      await addEvent(eventPayload).unwrap();
+
+      toast.success("Event created successfully! 🎉", { id: "create-event" });
       router.push("/dashboard");
     } catch (err: any) {
-      toast.error(err?.data?.message || "Failed to create event. Try again.", { id: "banner" });
+      toast.error(err?.data?.message || "Failed to create event.", { id: "create-event" });
     }
   };
 
@@ -375,3 +376,12 @@ const AddEvents = () => {
 };
 
 export default AddEvents;
+
+const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = (error) => reject(error);
+  });
+};
