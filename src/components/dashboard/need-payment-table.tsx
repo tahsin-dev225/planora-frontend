@@ -63,7 +63,7 @@ const NeedPaymentTable = () => {
         <Card className="border-muted/60 bg-background/50 backdrop-blur-xl border-dashed">
             <CardHeader>
                 <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                    <CreditCard className="text-rose-500" />
+                    <CreditCard className="text-primary" />
                     Awaiting Payment
                 </CardTitle>
                 <CardDescription>
@@ -111,7 +111,7 @@ const NeedPaymentTable = () => {
                                         </TableCell>
                                         <TableCell className="text-sm font-medium text-white/70">
                                             <div className="flex items-center gap-2">
-                                                <Calendar size={14} className="text-rose-500" />
+                                                <Calendar size={14} className="text-primary" />
                                                 {format(new Date(participant.event?.date), "MMM dd, yyyy")}
                                             </div>
                                         </TableCell>

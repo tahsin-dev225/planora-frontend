@@ -41,13 +41,22 @@ import { useState } from "react";
 //         "data": [
 
 const ManageEvent = () => {
-    const [page, setPage] = useState<string>("1");
-    const { data, isLoading, isError } = useGetEventForFeaturedQuery(page);
+    const [page, setPage] = useState<number>(1);
+    // const { data, isLoading, isError } = useGetEventForFeaturedQuery(page);
+    const { data, isLoading, isError } = useGetAllEventsQuery({
+    page,
+    limit: 10,
+    search:"",
+    type:"",
+    isPaid:"",
+  });
     const [deleteEvent, { isLoading: isDeleting }] = useDeleteEventMutation();
     const [makeFeaturedEvent, { isLoading: isMakingFeatured }] = useMakeFeaturedEventMutation();
 console.log(data?.data?.data);
+console.log('rom',data);
 
-    const events = data?.data?.data || [];
+
+    const events = data?.data || [];
 
     const handleDelete = async (id: string) => {
         try {
@@ -179,8 +188,8 @@ console.log(data?.data?.data);
                             </TableBody>
                         </Table>
                         <div className="flex justify-center mt-4">
-                            <Button onClick={() => setPage((prev) => (parseInt(prev) - 1).toString())} disabled={page === "1"} className="mr-2">Previous</Button>
-                            <Button onClick={() => setPage((prev) => (parseInt(prev) + 1).toString())} disabled={page === data?.data?.meta?.totalPage.toString()} className="ml-2">Next</Button>
+                            <Button onClick={() => setPage((prev) => (prev - 1))} disabled={page === 1} className="mr-2">Previous</Button>
+                            <Button onClick={() => setPage((prev) => (prev + 1))} disabled={page === data?.meta?.totalPage} className="ml-2">Next</Button>
                         </div>
                     </div>
                 )}

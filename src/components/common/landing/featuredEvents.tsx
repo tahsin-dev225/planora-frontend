@@ -35,11 +35,11 @@ const FeaturedEvents = () => {
         <div className='max-w-7xl xl:max-w-[1200px] mx-auto  py-12'>
             <div className="text-center mb-12 px-6 lg:px-3">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/80 mb-3">Discover</p>
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--heading-color)] dark:text-[var(--heading-color-dark)] tracking-tight">
                     Featured
-                    <span className='text-rose-500'> Events</span>
+                    <span className='text-primary'> Events</span>
                 </h1>
-                <p className="mt-4 text-white/40 text-sm max-w-md lg:max-w-2xl lg:mt-8 mx-auto">
+                <p className="mt-4 text-gray-500 dark:text-white/40 text-sm max-w-md lg:max-w-2xl lg:mt-8 mx-auto">
                     Don't miss out on the most exciting events happening around you.
                 </p>
             </div>
@@ -71,7 +71,7 @@ const FeaturedEvents = () => {
 
             <div className="w-full flex justify-center my-6 items-center">
                 <Link href={"/events"}>
-                    <Button size={"lg"} className="rounded-xl lg:text-lg px-8 bg-teal-600 hover:bg-teal-700 text-white transition-all">
+                    <Button size={"lg"} className="rounded-xl lg:text-lg px-8 bg-secondary hover:bg-teal-700 text-white transition-all">
                         View All Events
                         <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
@@ -85,7 +85,7 @@ const FeaturedEvents = () => {
                     opacity: 0.3;
                 }
                 .swiper-pagination-bullet-active {
-                    background: #f43f5e !important; /* rose-500 color */
+                    background: #f43f5e !important; /* primary color */
                     opacity: 1;
                 }
             `}</style>

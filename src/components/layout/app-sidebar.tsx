@@ -46,7 +46,7 @@ export function AppSidebar({
       <SidebarContent>
         <div className="flex-shrink-0 justify-center py-2  rounded-lg flex items-center">
             <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
-              <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
+              <Image className='w-40' src="/img/logo3.png" alt="Logo" width={400} height={200} />
             </Link>
           </div>
         {/* We create a SidebarGroup for each parent. */}
@@ -56,7 +56,7 @@ export function AppSidebar({
             <SidebarGroupContent>
               <SidebarMenu>
                 {item.items.map((item) => (
-                  <SidebarMenuItem className="py-1.5 border-b border-b-rose-500/10" key={item.title}>
+                  <SidebarMenuItem className="py-1.5 border-b border-b-primary/10" key={item.title}>
                     <SidebarMenuButton asChild>
                       <Link href={item.url}>{item.title}</Link>
                     </SidebarMenuButton>

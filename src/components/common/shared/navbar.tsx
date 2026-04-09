@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { useGetCurrentUserQuery, useLogoutMutation } from '@/redux/features/userSlice/userSlice';
 import { removeAuthCookies } from '@/actions/auth';
 import { useRouter } from 'next/navigation';
+import { ModeToggle } from './mode-toggle';
 import {
   Sheet,
   SheetContent,
@@ -27,19 +28,20 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'Events', href: '/events' },
+    { name: 'Features', href: '/features' },
     { name: 'About', href: '/about' },
   ];
 
 
   return (
-    <nav className="absolute top-0 z-50 w-full bg-transparent">
+    <nav className="sticky top-0 z-50 w-full backdrop-blur-lg bg-white/80 dark:bg-black/20 border-b border-gray-200 dark:border-white/10 transition-colors">
       <div className="max-w-7xl xl:max-w-[1500px] 2xl:max-w-[1700px] 3xl:max-w-[1800px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Logo */}
           <div className="flex-shrink-0  rounded-lg flex items-center">
-            <Link href="/" className="text-2xl font-bold text-white tracking-widest flex items-center uppercase">
-              <Image className='w-40' src="/img/logo2.png" alt="Logo" width={400} height={200} />
+            <Link href="/" className="text-2xl font-bold text-[var(--heading-color)] dark:text-[var(--heading-color-dark)] tracking-widest flex items-center uppercase">
+              <Image className='w-40' src="/img/logo3.png" alt="Logo" width={400} height={200} />
             </Link>
           </div>
 
@@ -50,7 +52,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-gray-300 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
+                  className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                   {link.name}
                 </Link>
@@ -60,7 +62,7 @@ const Navbar = () => {
                 user?.data && (
                   <Link
                     href={user?.data?.role === "ADMIN" || user?.data?.role === "SUPER_ADMIN" ? "/admin-dashboard" : user?.data?.role === "USER" ? "/dashboard" : "/register" }
-                    className="text-gray-300 hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
+                    className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white px-2 py-2 rounded-md text-sm font-medium transition-colors"
                   >
                     Dashboard
                   </Link>
@@ -70,7 +72,8 @@ const Navbar = () => {
           </div>
           
           {/* Contact Button */}
-          <div className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center space-x-4">
+            <ModeToggle />
             {user?.data ? (
               <ProfileDrawer user={user.data} />
             ) : (
@@ -84,10 +87,11 @@ const Navbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center space-x-2">
+            <ModeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-300 hover:text-white hover:bg-white/10 focus:outline-none transition-colors"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 focus:outline-none transition-colors"
               aria-expanded="false"
             >
               <span className="sr-only">Open main menu</span>
@@ -103,14 +107,14 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`md:hidden absolute w-full bg-background border-b border-white/10 shadow-lg transition-all duration-300 ease-in-out origin-top ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
+        className={`md:hidden absolute w-full bg-background border-b border-gray-200 dark:border-white/10 shadow-lg transition-all duration-300 ease-in-out origin-top ${isOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
       >
         <div className="px-4 pt-2 pb-6 space-y-2">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
+              className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
               onClick={() => setIsOpen(false)}
             >
               {link.name}
@@ -120,7 +124,7 @@ const Navbar = () => {
             user?.data && (
               <Link
                 href={user?.data?.role === "ADMIN" || user?.data?.role === "SUPER_ADMIN" ? "/admin-dashboard" : user?.data?.role === "USER" ? "/dashboard" : "/register" }
-                className="text-gray-300 hover:text-white hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
+                className="text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 block px-3 py-3 rounded-md text-base font-medium transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 Dashboard
@@ -170,7 +174,7 @@ const ProfileDrawer = ({ user }: { user: any }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <button className="rounded-full border border-white/15 shadow-lg shadow-sky-900/10 size-10 flex justify-center items-center hover:bg-white/10 transition-colors cursor-pointer text-white">
+        <button className="rounded-full border border-gray-300 dark:border-white/15 shadow-lg shadow-sky-900/10 size-10 flex justify-center items-center hover:bg-black/5 dark:hover:bg-white/10 transition-colors cursor-pointer text-[var(--heading-color)] dark:text-[var(--heading-color-dark)]">
           <User className="w-5 h-5" />
         </button>
       </SheetTrigger>
@@ -191,7 +195,7 @@ const ProfileDrawer = ({ user }: { user: any }) => {
             
             {/* Main Info */}
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-rose-600 flex items-center justify-center text-2xl font-bold uppercase shadow-lg shadow-red-500/20">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-primary flex items-center justify-center text-2xl font-bold uppercase shadow-lg shadow-red-500/20">
                 {user?.name?.charAt(0) || "U"}
               </div>
               <div>
@@ -217,7 +221,7 @@ const ProfileDrawer = ({ user }: { user: any }) => {
               <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-gray-200 uppercase tracking-wider">
                 Role: {user?.role}
               </span>
-              <span className={`px-3 py-1 rounded-full text-xs font-semibold tracking-wider ${user?.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}`}>
+              <span className={`px-3 py-1 rounded-full text-xs font-semibold tracking-wider ${user?.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-primary/10 text-rose-400 border border-primary/20'}`}>
                 {user?.status}
               </span>
             </div>

@@ -23,7 +23,7 @@ import Image from "next/image";
 type EventType = "PUBLIC" | "PRIVATE";
 
 const FIELD_BASE =
-  "w-full bg-white/[0.04] border border-white/[0.09] rounded-xl px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all";
+  "w-full bg-gray-100 dark:bg-white/[0.04] border border-gray-300 dark:border-white/[0.09] rounded-xl px-4 py-3 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-white/25 outline-none focus:border-primary/60 focus:ring-1 focus:ring-primary/30 transition-all";
 
 const Label = ({
   children,
@@ -34,8 +34,8 @@ const Label = ({
   icon?: React.ReactNode;
   required?: boolean;
 }) => (
-  <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-white/40 mb-2">
-    {icon && <span className="text-white/30">{icon}</span>}
+  <label className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-widest text-gray-500 dark:text-white/40 mb-2">
+    {icon && <span className="text-gray-400 dark:text-white/30">{icon}</span>}
     {children}
     {required && <span className="text-rose-400 ml-0.5">*</span>}
   </label>
@@ -115,7 +115,7 @@ const AddEvents = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white py-10 px-4">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0a0a0a] text-gray-900 dark:text-white py-10 px-4">
       <div className="max-w-2xl mx-auto">
 
         {/* ── Header ── */}
@@ -124,10 +124,10 @@ const AddEvents = () => {
             <Sparkles className="h-3 w-3" />
             New Event
           </div>
-          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-white">
+          <h1 className="text-3xl md:text-4xl font-black tracking-tight text-gray-900 dark:text-white">
             Create an Event
           </h1>
-          <p className="mt-2 text-white/35 text-sm">
+          <p className="mt-2 text-gray-500 dark:text-white/35 text-sm">
             Fill in the details below to publish your event to the platform.
           </p>
         </div>
@@ -160,21 +160,21 @@ const AddEvents = () => {
                   <button
                     type="button"
                     onClick={(e) => { e.stopPropagation(); removeBanner(); }}
-                    className="absolute top-3 right-3 p-1.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-rose-500/80 transition-colors z-10"
+                    className="absolute top-3 right-3 p-1.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-primary/80 transition-colors z-10"
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
                 </>
               ) : (
                 <div className="flex flex-col items-center justify-center h-full gap-3">
-                  <div className="h-12 w-12 rounded-2xl bg-white/[0.04] border border-white/[0.08] flex items-center justify-center">
-                    <ImagePlus className="h-5 w-5 text-white/30" />
+                  <div className="h-12 w-12 rounded-2xl bg-gray-100 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.08] flex items-center justify-center">
+                    <ImagePlus className="h-5 w-5 text-gray-400 dark:text-white/30" />
                   </div>
                   <div className="text-center">
-                    <p className="text-sm text-white/40 font-medium">
+                    <p className="text-sm text-gray-500 dark:text-white/40 font-medium">
                       Click to upload banner
                     </p>
-                    <p className="text-xs text-white/20 mt-1">
+                    <p className="text-xs text-gray-400 dark:text-white/20 mt-1">
                       PNG, JPG, WEBP — max 5MB
                     </p>
                   </div>
@@ -280,7 +280,7 @@ const AddEvents = () => {
                       ? t === "PUBLIC"
                         ? "bg-sky-500/20 border-sky-500/50 text-sky-300"
                         : "bg-violet-500/20 border-violet-500/50 text-violet-300"
-                      : "bg-white/[0.03] border-white/[0.08] text-white/40 hover:border-white/20 hover:text-white/60"
+                      : "bg-gray-100 dark:bg-white/[0.03] border-gray-200 dark:border-white/[0.08] text-gray-500 dark:text-white/40 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-700 dark:hover:text-white/60"
                     }`}
                 >
                   {t === "PUBLIC" ? (
@@ -310,7 +310,7 @@ const AddEvents = () => {
                       ? paid
                         ? "bg-amber-500/20 border-amber-500/50 text-amber-300"
                         : "bg-emerald-500/20 border-emerald-500/50 text-emerald-300"
-                      : "bg-white/[0.03] border-white/[0.08] text-white/40 hover:border-white/20 hover:text-white/60"
+                      : "bg-gray-100 dark:bg-white/[0.03] border-gray-200 dark:border-white/[0.08] text-gray-500 dark:text-white/40 hover:border-gray-300 dark:hover:border-white/20 hover:text-gray-700 dark:hover:text-white/60"
                     }`}
                 >
                   <DollarSign className="h-4 w-4" />
@@ -329,7 +329,7 @@ const AddEvents = () => {
                 Ticket Fee (USD)
               </Label>
               <div className="relative">
-                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-sm font-bold">$</span>
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/30 text-sm font-bold">$</span>
                 <input
                   type="number"
                   min={1}
@@ -345,13 +345,13 @@ const AddEvents = () => {
           )}
 
           {/* ── Divider ── */}
-          <div className="border-t border-white/[0.06]" />
+          <div className="border-t border-gray-200 dark:border-white/[0.06]" />
 
           {/* ── Submit ── */}
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full h-13 py-3.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-black text-sm uppercase tracking-[0.12em] transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full h-13 py-3.5 rounded-xl bg-primary hover:bg-primary text-white font-black text-sm uppercase tracking-[0.12em] transition-all hover:scale-[1.02] hover:shadow-lg hover:shadow-primary/25 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2 cursor-pointer"
           >
             {isLoading ? (
               <>
@@ -366,7 +366,7 @@ const AddEvents = () => {
             )}
           </button>
 
-          <p className="text-center text-[11px] text-white/20 pb-4">
+          <p className="text-center text-[11px] text-gray-400 dark:text-white/20 pb-4">
             Your event will be visible to users immediately after publishing.
           </p>
         </form>

@@ -54,7 +54,7 @@ const PendingFreeRequestTable = () => {
     <Card className="border-muted/60 bg-background/50 backdrop-blur-xl">
       <CardHeader>
         <CardTitle className="text-2xl font-bold">Participation Requests 
-          <span className="text-rose-500">Private + Free</span></CardTitle>
+          <span className="text-primary">Private + Free</span></CardTitle>
         <CardDescription>
           Manage join requests for your private and Free events.
         </CardDescription>

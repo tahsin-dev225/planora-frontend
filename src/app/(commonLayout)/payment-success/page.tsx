@@ -9,7 +9,7 @@ export default function PaymentSuccessPage() {
             <h1 className="text-4xl font-bold text-white">Payment Success</h1>
             <p className="text-white/70">Thank you for your purchase. Your Registration is successful.</p>
             <Link href="/">
-                <Button variant="default" className="rounded-xl bg-teal-500/20 text-teal-500 border border-teal-500/20">
+                <Button variant="default" className="rounded-xl bg-secondary/20 text-secondary border border-secondary/20">
                     Back to Home
                 </Button>
             </Link>

@@ -58,7 +58,7 @@ const STATUS_CONFIG = {
   NEED_PAYMENT: {
     label: "Payment Required",
     icon: AlertCircle,
-    classes: "bg-rose-500/15 text-rose-400 border-rose-500/30",
+    classes: "bg-primary/15 text-rose-400 border-primary/30",
   },
 } as const;
 

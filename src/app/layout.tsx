@@ -7,6 +7,8 @@ import { Toaster } from "@/components/ui/sonner";
 import { Provider } from "react-redux";
 import { store } from "@/redux/app/store";
 import CurrentUserLoader from "@/components/common/shared/CurrentUserLoader";
+import { ThemeProvider } from "@/components/theme-provider";
+import ChatBox from "@/components/common/shared/chatbox";
 
 const outfit = Outfit({
   variable: "--font-sans",
@@ -25,16 +27,26 @@ export default function RootLayout({
 }>) {
   
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${outfit.variable} font-sans antialiased`}
       >
-        <Provider store={store}>
-          <SmoothScroll>
-            <CurrentUserLoader>{children}</CurrentUserLoader>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Provider store={store}>
+            <SmoothScroll>
+              <CurrentUserLoader>
+                {children}
+              </CurrentUserLoader>
             <Toaster position="top-right" richColors/>
+            <ChatBox />
           </SmoothScroll>
         </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

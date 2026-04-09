@@ -47,7 +47,7 @@ export const EventCard = ({ event }: EventCardProps) => {
   const fullDate = format(eventDate, "EEE, MMM dd yyyy");
 
   return (
-    <div className="group relative flex flex-col h-full rounded-2xl overflow-hidden border border-white/[0.06] bg-white/[0.03] backdrop-blur-lg transition-all duration-500 hover:border-white/[0.12] hover:bg-white/[0.05] hover:shadow-2xl hover:shadow-black/40 hover:-translate-y-1">
+    <div className="group relative flex flex-col shadow-xl dark:shadow-white/10 h-full rounded-2xl overflow-hidden border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-white/[0.03] backdrop-blur-lg transition-all duration-500 hover:border-gray-300 dark:hover:border-white/[0.12] hover:bg-gray-50 dark:hover:bg-white/[0.05] hover:shadow-2xl hover:shadow-black/40 hover:-translate-y-1">
       {/* ── Image Section ── */}
       <div className="relative w-full h-52 overflow-hidden bg-zinc-900 flex-shrink-0" style={{height: '208px'}}>
         <Image
@@ -67,14 +67,14 @@ export const EventCard = ({ event }: EventCardProps) => {
         <div className="absolute bottom-4 left-4">
           <Badge className={`text-[13px] font-bold tracking-widest px-5 py-3 rounded-full uppercase border backdrop-blur-md ${event?.type === "PUBLIC"
             ? "bg-sky-500/20 text-sky-300 border-sky-500/30"
-            : "bg-rose-500  text-white border-rose-500"
+            : "bg-primary  text-white border-primary"
             }`}>
             {event?.type === "PUBLIC" ? "Public" : "Private"}
           </Badge>
         </div>
         {event?.isFeatured && <div className="absolute top-4 left-4">
           <Badge className="text-[13px] font-bold tracking-widest px-5 py-3 rounded-full
-           uppercase border backdrop-blur-md bg-teal-500  text-white border-teal-500">
+           uppercase border backdrop-blur-md bg-secondary  text-white border-secondary">
             Featured
           </Badge>
         </div>}
@@ -86,57 +86,57 @@ export const EventCard = ({ event }: EventCardProps) => {
       <div className="flex flex-col flex-1 p-5 gap-4">
         {/* Title + Organizer */}
         <div>
-          <h3 className="text-lg font-black text-white leading-tight line-clamp-1 tracking-tight transition-colors duration-300 group-hover:text-primary">
+          <h3 className="text-lg font-black text-[var(--heading-color)] dark:text-[var(--heading-color-dark)] leading-tight line-clamp-1 tracking-tight transition-colors duration-300 group-hover:text-primary">
             {event?.title}
           </h3>
-          <p className="mt-1 text-xs font-medium text-white/40 flex items-center gap-1.5">
+          <p className="mt-1 text-xs font-medium text-gray-500 dark:text-white/40 flex items-center gap-1.5">
             <User className="h-3 w-3" />
             {event?.organizer?.name}
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-sm line-clamp-1 text-white/50 leading-relaxed ">
+        <p className="text-sm line-clamp-1 text-gray-600 dark:text-white/50 leading-relaxed ">
           {event?.description}
         </p>
 
         {/* Meta List */}
         <div className="space-y-2.5 pb-1">
           <div className="flex items-center gap-3 text-sm">
-            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-white/5 border border-white/[0.07]">
-              <MapPin className="h-3.5 w-3.5 text-white/40" />
+            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/[0.07]">
+              <MapPin className="h-3.5 w-3.5 text-gray-500 dark:text-white/40" />
             </span>
-            <span className="text-white/70 font-medium line-clamp-1">{event?.venue}</span>
+            <span className="text-gray-700 dark:text-white/70 font-medium line-clamp-1">{event?.venue}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-white/5 border border-white/[0.07]">
-              <Calendar className="h-3.5 w-3.5 text-white/40" />
+            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/[0.07]">
+              <Calendar className="h-3.5 w-3.5 text-gray-500 dark:text-white/40" />
             </span>
-            <span className="text-white/70 font-medium">{fullDate}</span>
+            <span className="text-gray-700 dark:text-white/70 font-medium">{fullDate}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-white/5 border border-white/[0.07]">
-              <Clock3 className="h-3.5 w-3.5 text-white/40" />
+            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/[0.07]">
+              <Clock3 className="h-3.5 w-3.5 text-gray-500 dark:text-white/40" />
             </span>
-            <span className="text-white/70 font-medium">{event?.time}</span>
+            <span className="text-gray-700 dark:text-white/70 font-medium">{event?.time}</span>
           </div>
           <div className="flex items-center gap-3 text-sm">
-            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-white/5 border border-white/[0.07]">
-              <CircleDollarSign className="h-3.5 w-3.5 text-white/40" />
+            <span className="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/[0.07]">
+              <CircleDollarSign className="h-3.5 w-3.5 text-gray-500 dark:text-white/40" />
             </span>
-            <span className={`font-bold tracking-tight ${event?.isPaid ? "text-amber-300" : "text-emerald-300"}`}>
+            <span className={`font-bold tracking-tight ${event?.isPaid ? "text-amber-600 dark:text-amber-300" : "text-emerald-600 dark:text-emerald-300"}`}>
               {event?.isPaid ? `Registration fee: $${event.fee}` : "Free Registration"}
             </span>
           </div>
         </div>
 
         {/* Divider */}
-        <div className="border-t border-white/[0.06] mt-auto" />
+        <div className="border-t border-gray-200 dark:border-white/[0.06] mt-auto" />
 
         {/* ── Action Buttons ── */}
         <div className="grid  gap-3 pt-1">
           <Link href={`/events/${event?.id}`}
-            className="h-10 rounded-xl cursor-pointer border-white/10 flex items-center justify-center bg-rose-800/70 hover:bg-rose-900/80 text-white/70 hover:text-white font-bold text-xs uppercase tracking-[0.12em] transition-all duration-300 gap-1.5"
+            className="h-10 rounded-xl cursor-pointer border-gray-200 dark:border-white/10 flex items-center justify-center bg-rose-100 dark:bg-rose-800/70 hover:bg-rose-200 dark:hover:bg-rose-900/80 text-rose-800 dark:text-white/70 hover:text-rose-900 dark:hover:text-white font-bold text-xs uppercase tracking-[0.12em] transition-all duration-300 gap-1.5"
           >
             Details
             <ArrowUpRight className="h-3.5 w-3.5" />

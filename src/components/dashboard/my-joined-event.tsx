@@ -7,20 +7,20 @@ import Link from "next/link";
 
 /* ── Skeleton card (horizontal) ── */
 const CardSkeleton = () => (
-  <div className="flex flex-row w-full rounded-2xl bg-white/[0.03] border border-white/[0.06] overflow-hidden animate-pulse">
-    <div className="w-52 flex-shrink-0 h-32 bg-white/[0.05]" />
+  <div className="flex flex-row w-full rounded-2xl bg-gray-50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.06] overflow-hidden animate-pulse">
+    <div className="w-52 flex-shrink-0 h-32 bg-gray-200 dark:bg-white/[0.05]" />
     <div className="flex-1 p-5 space-y-3">
       <div className="flex gap-2">
-        <div className="h-5 w-16 bg-white/[0.06] rounded-full" />
-        <div className="h-5 w-14 bg-white/[0.06] rounded-full" />
+        <div className="h-5 w-16 bg-gray-200 dark:bg-white/[0.06] rounded-full" />
+        <div className="h-5 w-14 bg-gray-200 dark:bg-white/[0.06] rounded-full" />
       </div>
-      <div className="h-4 w-2/3 bg-white/[0.06] rounded-lg" />
+      <div className="h-4 w-2/3 bg-gray-200 dark:bg-white/[0.06] rounded-lg" />
       <div className="flex gap-4">
-        <div className="h-3 w-20 bg-white/[0.04] rounded-full" />
-        <div className="h-3 w-28 bg-white/[0.04] rounded-full" />
+        <div className="h-3 w-20 bg-gray-100 dark:bg-white/[0.04] rounded-full" />
+        <div className="h-3 w-28 bg-gray-100 dark:bg-white/[0.04] rounded-full" />
       </div>
-      <div className="border-t border-white/[0.05] pt-3">
-        <div className="h-8 w-28 bg-white/[0.05] rounded-xl ml-auto" />
+      <div className="border-t border-gray-200 dark:border-white/[0.05] pt-3">
+        <div className="h-8 w-28 bg-gray-200 dark:bg-white/[0.05] rounded-xl ml-auto" />
       </div>
     </div>
   </div>
@@ -32,17 +32,17 @@ const MyJoinedEvent = () => {
   const participants = data?.data ?? [];
 
   return (
-    <div className="min-h-[60vh] bg-[#0a0a0a] text-white py-8 px-4 sm:px-6">
+    <div className="min-h-[60vh] bg-slate-50 dark:bg-[#0a0a0a] text-gray-900 dark:text-white py-8 px-4 sm:px-6">
 
       {/* Header */}
       <div className="mb-8">
         <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary/70 mb-2">
           My Activity
         </p>
-        <h1 className="text-2xl md:text-3xl font-black tracking-tight text-white">
+        <h1 className="text-2xl md:text-3xl font-black tracking-tight text-gray-900 dark:text-white">
           Joined Events
         </h1>
-        <p className="mt-1.5 text-white/35 text-sm">
+        <p className="mt-1.5 text-gray-500 dark:text-white/35 text-sm">
           All events you have registered or applied for.
         </p>
       </div>
@@ -57,11 +57,11 @@ const MyJoinedEvent = () => {
       {/* Empty state */}
       {!isLoading && participants.length === 0 && (
         <div className="flex flex-col items-center justify-center py-24 text-center">
-          <div className="h-16 w-16 rounded-2xl bg-white/[0.04] border border-white/[0.07] flex items-center justify-center mb-5">
-            <CalendarX2 className="h-7 w-7 text-white/20" />
+          <div className="h-16 w-16 rounded-2xl bg-gray-100 dark:bg-white/[0.04] border border-gray-200 dark:border-white/[0.07] flex items-center justify-center mb-5">
+            <CalendarX2 className="h-7 w-7 text-gray-300 dark:text-white/20" />
           </div>
-          <h3 className="text-lg font-black text-white mb-2">No events yet</h3>
-          <p className="text-white/30 text-sm max-w-xs mb-6">
+          <h3 className="text-lg font-black text-gray-900 dark:text-white mb-2">No events yet</h3>
+          <p className="text-gray-500 dark:text-white/30 text-sm max-w-xs mb-6">
             You haven't joined any events. Browse and register for an event to see it here.
           </p>
           <Link
@@ -84,7 +84,7 @@ const MyJoinedEvent = () => {
               const colorMap: Record<string, string> = {
                 APPROVED: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
                 PENDING: "bg-amber-500/10 text-amber-400 border-amber-500/20",
-                NEED_PAYMENT: "bg-rose-500/10 text-rose-400 border-rose-500/20",
+                NEED_PAYMENT: "bg-primary/10 text-rose-400 border-primary/20",
               };
               const labelMap: Record<string, string> = {
                 APPROVED: "Approved",
@@ -97,7 +97,7 @@ const MyJoinedEvent = () => {
                 </span>
               );
             })}
-            <span className="px-3 py-1.5 rounded-full border border-white/[0.08] text-[11px] font-bold text-white/30 bg-white/[0.03]">
+            <span className="px-3 py-1.5 rounded-full border border-gray-200 dark:border-white/[0.08] text-[11px] font-bold text-gray-500 dark:text-white/30 bg-gray-100 dark:bg-white/[0.03]">
               {participants.length} Total
             </span>
           </div>

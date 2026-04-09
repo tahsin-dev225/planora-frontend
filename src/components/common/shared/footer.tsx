@@ -37,10 +37,10 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-[#0a0a0a] text-white pt-24 pb-12 border-t border-white/5 relative overflow-hidden">
+    <footer className="dark:bg-[#0a0a0a] shadow-lg dark:shadow-none text-white pt-24 pb-12 dark:border-white/5 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/5 blur-[120px] rounded-full pointer-events-none"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-rose-600/5 blur-[120px] rounded-full pointer-events-none"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
 
       <div className="max-w-7xl xl:max-w-[1500px] 2xl:max-w-[1700px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="lg:col-span-4">
             <Link href="/" className="inline-block mb-8">
               <Image 
-                src="/img/logo2.png" 
+                src="/img/logo3.png" 
                 alt="Planora Logo" 
                 width={180} 
                 height={60} 
@@ -63,7 +63,7 @@ const Footer = () => {
 
           {/* Links Columns */}
           <div className="lg:col-span-2">
-            <h4 className="text-xl font-bold mb-8 relative inline-block">
+            <h4 className="text-xl text-gray-600 dark:text-white font-bold mb-8 relative inline-block">
               Company
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-red-600 rounded-full"></span>
             </h4>
@@ -79,7 +79,7 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-xl font-bold mb-8 relative inline-block">
+            <h4 className="text-xl text-gray-600 dark:text-white font-bold mb-8 relative inline-block">
               Resources
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-red-600 rounded-full"></span>
             </h4>
@@ -96,7 +96,7 @@ const Footer = () => {
 
           {/* Newsletter Column */}
           <div className="lg:col-span-4">
-            <h4 className="text-xl font-bold mb-8 relative inline-block">
+            <h4 className="text-xl text-gray-600 dark:text-white font-bold mb-8 relative inline-block">
               Contact Us
               <span className="absolute -bottom-2 left-0 w-8 h-1 bg-red-600 rounded-full"></span>
             </h4>
@@ -119,7 +119,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/5 flex flex-col md:flex-row justify-center items-center gap-6">
+        <div className="pt-6 border-t border-black/5 flex flex-col md:flex-row justify-center items-center gap-6">
           <p className="text-gray-500 text-sm">
             © {currentYear} Planora Events. All rights reserved. Crafting Memories with Passion.
           </p>

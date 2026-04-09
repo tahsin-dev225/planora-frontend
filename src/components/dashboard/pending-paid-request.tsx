@@ -53,7 +53,7 @@ const PendingRequestTable = () => {
   return (
     <Card className="border-muted/60 bg-background/50 backdrop-blur-xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">Participation Requests <span className="text-rose-500">Private + Paid</span></CardTitle>
+        <CardTitle className="text-2xl font-bold">Participation Requests <span className="text-primary">Private + Paid</span></CardTitle>
         <CardDescription>
           Manage join requests for your private and paid events.
         </CardDescription>
