@@ -89,13 +89,15 @@ export default function RegistrationPage() {
         `${process.env.NEXT_PUBLIC_AUTH_URL}/api/auth/sign-in/social`,
         {
           provider: "google",
-          callbackURL:  `${process.env.NEXT_PUBLIC_FRONTEND_URL}`,
-          errorCallbackURL: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register`,
+          // callbackURL:  `${process.env.NEXT_PUBLIC_FRONTEND_URL}`,
+          // errorCallbackURL: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/register`,
         },
         {
           withCredentials: true,
         }
       );
+console.log("Google Auth response:", response.data);
+      console.log("Redirecting to URL:", response.data?.url);
       if (response.data && response.data.url) {
         window.location.href = response.data.url;
       }
@@ -215,7 +217,10 @@ export default function RegistrationPage() {
                 {!loading && <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               </button>
 
-              {/* <div className="relative my-6">
+               
+            </div>
+          </form>
+          <div className="relative my-6">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300 dark:border-gray-800"></div>
                 </div>
@@ -231,13 +236,11 @@ export default function RegistrationPage() {
               >
                 <Chrome className="w-5 h-5 mr-3 text-primary" />
                 Google
-              </button> */}
+              </button>
 
               <p className="text-gray-400 text-heading-color dark:text-heading-color-dark text-center mt-4">
                 Already have an account? <Link href="/login" className="text-teal-400 hover:text-teal-300 font-medium">Sign In</Link>
-              </p>  
-            </div>
-          </form>
+              </p> 
         </div>
       </div>
     </div>

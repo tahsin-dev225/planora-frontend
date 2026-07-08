@@ -7,7 +7,7 @@ export const proxy = async (request: NextRequest) => {
 
   const { data } = useGetCurrentUserQuery();
 
-  if (!data) {
+  if (!data?.data) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
