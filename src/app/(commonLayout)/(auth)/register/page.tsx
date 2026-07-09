@@ -229,14 +229,14 @@ console.log("Google Auth response:", response.data);
                 </div>
               </div>
 
-              <button
+              {/* <button
                 type="button"
                 onClick={handleGoogleLogin}
                 className="w-full bg-white dark:bg-[#1a1a1a] text-gray-800 dark:text-white border border-gray-300 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800 font-bold py-2.5 rounded-full transition duration-300 flex justify-center items-center shadow-sm"
               >
                 <Chrome className="w-5 h-5 mr-3 text-primary" />
                 Google
-              </button>
+              </button> */}
 
               <p className="text-gray-400 text-heading-color dark:text-heading-color-dark text-center mt-4">
                 Already have an account? <Link href="/login" className="text-teal-400 hover:text-teal-300 font-medium">Sign In</Link>
