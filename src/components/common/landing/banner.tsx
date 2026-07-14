@@ -75,7 +75,7 @@ const Banner = () => {
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-red-600/20 blur-[100px] rounded-full"></div>
              
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md aspect-[4/5] rounded-[1rem] overflow-hidden border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.6)] transform  transition-transform duration-700 group">
-               <img src="/img/login.jpg" alt="Event Planning" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
+               <Image src="/img/login.jpg" fill  alt="Event Planning" className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000" />
                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-700"></div>
                
                <div className="absolute bottom-8 left-8 right-8 p-5 rounded-2xl dark:bg-white/10 bg-white/90 backdrop-blur-md border dark:border-white/20 border-white/40 flex items-center gap-4 transform translate-y-2 group-hover:translate-y-0 transition-all duration-700">
