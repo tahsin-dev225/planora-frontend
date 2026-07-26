@@ -28,7 +28,7 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 relative overflow-hidden bg-background">
+    <section className="py-10 md:py-20 relative overflow-hidden bg-background">
       {/* Background Glows */}
       <div className="absolute top-0 -left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
       <div className="absolute bottom-0 -right-20 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />

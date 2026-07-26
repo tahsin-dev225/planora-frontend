@@ -12,7 +12,7 @@ export default function Home() {
   const { data } = useGetCurrentUserQuery();
   
   return (
-    <main className="min-h-screen bg-background text-white pb-20">
+    <main className="min-h-screen bg-background text-white pb-6 md:pb-20">
       <Banner />
       <Sponsors />
       <UpcomingEvents />

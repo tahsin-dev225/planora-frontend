@@ -30,7 +30,7 @@ export default function ChatBox() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/ai-chat", {
+      const res = await fetch("/api/gemini", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function ChatBox() {
       </button>
 
       {/* Chat Window */}
-      <div 
+      <div
         className={`fixed bottom-6 right-6 z-[60] w-[90vw] sm:w-[400px] h-[600px] max-h-[85vh] flex flex-col bg-white dark:bg-[#121212] border border-gray-200 dark:border-white/10 rounded-2xl shadow-[0_0_40px_rgba(0,0,0,0.1)] dark:shadow-[0_0_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-500 origin-bottom-right
         ${isOpen ? 'scale-100 opacity-100 translate-y-0' : 'scale-90 opacity-0 pointer-events-none translate-y-10'}`}
       >
@@ -82,7 +82,7 @@ export default function ChatBox() {
               <p className="text-white/80 text-xs font-medium">Event Planning Assistant</p>
             </div>
           </div>
-          <button 
+          <button
             onClick={() => setIsOpen(false)}
             className="w-8 h-8 rounded-full bg-black/10 hover:bg-black/20 flex items-center justify-center text-white transition-colors relative z-10"
           >
@@ -99,11 +99,11 @@ export default function ChatBox() {
                   <Bot className="w-4 h-4" />
                 </div>
               )}
-              
-              <div 
+
+              <div
                 className={`px-4 py-2.5 rounded-2xl max-w-[80%] text-sm shadow-sm
-                  ${m.role === "user" 
-                    ? "bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-white rounded-br-sm border border-gray-200 dark:border-white/5" 
+                  ${m.role === "user"
+                    ? "bg-gray-100 dark:bg-white/10 text-gray-800 dark:text-white rounded-br-sm border border-gray-200 dark:border-white/5"
                     : "bg-primary text-white rounded-bl-sm shadow-primary/20"
                   }`}
               >

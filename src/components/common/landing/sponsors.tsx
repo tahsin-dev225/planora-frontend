@@ -65,7 +65,7 @@ const MarqueeRow = ({
 
 export default function Sponsors() {
   return (
-    <section className="py-20 relative overflow-hidden">
+    <section className="py-15 md:py-20 relative overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute left-1/4 top-1/2 -translate-y-1/2 w-96 h-48 bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute right-1/4 top-1/2 -translate-y-1/2 w-96 h-48 bg-secondary/5 blur-[120px] rounded-full pointer-events-none" />

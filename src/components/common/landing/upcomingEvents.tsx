@@ -32,7 +32,7 @@ const UpcomingEvents = () => {
     }
 
     return (
-        <div className='max-w-7xl xl:max-w-[1200px] mx-auto  py-12'>
+        <div className='max-w-7xl xl:max-w-[1200px] mx-auto py-6 md:py-12'>
             <div className="text-center mb-12 px-6 lg:px-3">
                 <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary/80 mb-3">Discover</p>
                 <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[var(--heading-color)] dark:text-[var(--heading-color-dark)] tracking-tight">
@@ -69,7 +69,7 @@ const UpcomingEvents = () => {
                 </Swiper>
             </div>
 
-            <div className="w-full flex justify-center my-6 items-center">
+            <div className="w-full flex justify-center my-12 md:my-6 items-center">
                 <Link href={"/events"}>
                     <Button size={"lg"} className="rounded-xl lg:text-lg px-8 bg-secondary hover:bg-teal-700 text-white transition-all">
                         View All Events

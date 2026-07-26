@@ -8,7 +8,7 @@ import { useGetCurrentUserQuery } from '@/redux/features/userSlice/userSlice';
 const Cta = () => {
   const {data:user} = useGetCurrentUserQuery();
   return (
-    <section className="relative py-24 overflow-hidden dark:bg-[#0a0a0a] bg-gray-50">
+    <section className="relative py-6 md:py-24 overflow-hidden dark:bg-[#0a0a0a] bg-gray-50">
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(225,29,72,0.08),transparent_70%)] pointer-events-none"></div>
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-red-600/10 blur-[120px] rounded-full pointer-events-none animate-pulse"></div>

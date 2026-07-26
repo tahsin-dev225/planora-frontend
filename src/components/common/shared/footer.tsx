@@ -37,7 +37,7 @@ const Footer = () => {
   };
 
   return (
-    <footer className="dark:bg-[#0a0a0a] shadow-lg dark:shadow-none text-white pt-24 pb-12 dark:border-white/5 relative overflow-hidden">
+    <footer className="dark:bg-[#0a0a0a] shadow-lg dark:shadow-none text-white pt-5 md:pt-24 pb-12 dark:border-white/5 relative overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/5 blur-[120px] rounded-full pointer-events-none"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/5 blur-[120px] rounded-full pointer-events-none"></div>
